@@ -1,0 +1,96 @@
+commit 297269a1cbefe1d84ed6d63d5aec9ad589639988
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 13:17:17 2023 +0200
+
+    muutos tt11
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit c96f9de3e96ff7214f70dfd6331e4ca130bb2aca
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 13:02:33 2023 +0200
+
+    Tehtävä 10 muutos
+
+ ekat.txt             | 1 +
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 4 files changed, 1 insertion(+)
+
+commit c6cfec62c093c513c92343dbdb69429ab8032cb5
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 12:44:53 2023 +0200
+
+    Muutos
+
+ eka.txt    | 2 +-
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 30b0b428a210dc6ae47f8f89a017b5a9fbbb70ec
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 12:38:42 2023 +0200
+
+    nimi vaihdettiin
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit d664c616b582039a80d7c75de870e9c390645f46
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 12:35:55 2023 +0200
+
+    Poistettu toinen
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 708c17336f5831767689ba030224e582767654b4
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 12:28:55 2023 +0200
+
+    Päivitetty
+
+ stuff/tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 751be6f0fd1406403251e945e386a473f7f50fc5
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 12:27:21 2023 +0200
+
+    päivitä
+
+ stuff/tiedosto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit f10dfb3ea47c3f258df4bff57d0c33bf80893aaa
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 12:13:58 2023 +0200
+
+    neljäs kerta
+
+ "stuff/nelj\303\244s.txt" | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ab2936acaa1a6db871d7cffbbfd45859e7595743
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 12:11:22 2023 +0200
+
+    kolmas kerta
+
+ kolmas.txt   | 1 +
+ tiedosto.txt | 1 +
+ toinen.txt   | 1 +
+ 3 files changed, 3 insertions(+)
+
+commit 342d533802892769678e7e6ff85f10a8bb73ebe5
+Author: Yusuboy <yuusufab@outlook.com>
+Date:   Wed Mar 15 11:56:24 2023 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
