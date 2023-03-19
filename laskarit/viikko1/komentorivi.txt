@@ -1,5 +1,13 @@
 kurssit
 └── ot2023
     └── viikko1
-
-2 directories, 0 files
+        └── unicafe
+            ├── poetry.lock
+            ├── pyproject.toml
+            └── src
+                ├── index.py
+                ├── kassapaate.py
+                ├── maksukortti.py
+                └── tests
+                    ├── __init__.py
+                    └── maksukortti_test.py
