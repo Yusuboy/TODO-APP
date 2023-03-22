@@ -1,5 +1,4 @@
 # aterioiden hinnat ovat senteissä
-
 EDULLINEN = 250
 MAUKAS = 400
 
