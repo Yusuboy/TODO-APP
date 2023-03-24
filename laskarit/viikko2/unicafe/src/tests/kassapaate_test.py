@@ -28,21 +28,18 @@ class TestKassapääte(unittest.TestCase):
 
         
      def test_maukkaan_lounaan_käteisosto(self):
-        kassapaate = Kassapaate()
-        maksu = 600
-        vaihtoraha = kassapaate.syo_maukkaasti_kateisella(maksu)
-        self.assertEqual(kassapaate.kassassa_rahaa, 100400, "Kassapäätteen rahamäärä väärä")
-        self.assertEqual(kassapaate.maukkaat, 1, "Maukkaiden lounaiden määrä oikea")
-        self.assertEqual(vaihtoraha, maksu - 400, "Vaihtorahan oikea")    
-
-
-     def test_maukas_ei_riittava(self):
-        kassa = Kassapaate()
-        maksu = 100 
-        vaihtoraha = kassa.syo_edullisesti_kateisella(maksu)
-        self.assertEqual(vaihtoraha, 100 , "Ei riittävästi käteistä")  
-        self.assertEqual(kassa.kassassa_rahaa, 100000)  
-        self.assertEqual(kassa.maukkaat, 0) 
+       kassa = Kassapaate()
+       maksu = 500
+       vaihtoraha = kassa.syo_maukkaasti_kateisella(maksu)
+       self.assertEqual(vaihtoraha, maksu - 400, "Vaihtorahan suuruus väärä")
+       self.assertEqual(kassa.kassassa_rahaa, 100400, "Kassassa oleva rahamäärä väärä")
+       self.assertEqual(kassa.maukkaat, 1, "Maukkaiden lounaiden määrä väärä")
+    
+       maksu = 300
+       vaihtoraha = kassa.syo_maukkaasti_kateisella(maksu)
+       self.assertEqual(vaihtoraha, maksu, "Vaihtorahan suuruus väärä")
+       self.assertEqual(kassa.kassassa_rahaa, 100400, "Kassassa oleva rahamäärä väärä")
+       self.assertEqual(kassa.maukkaat, 1, "Maukkaiden lounaiden määrä väärä")
 
      
      def test_syo_edullisesti_kortilla_veloitus_onnistuu(self):
