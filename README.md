@@ -6,3 +6,4 @@
 ### **Viikko 2**
 #### [Kattavuusraportti screenshot](laskarit/viikko2/kattavuusraportti.png)
 #### [Vaatimuusmäärittely](dokumentaatio/vaatimusmaarittely.md)
+#### [Tuntikiranpito](dokumentaatio/tuntikirjanpito.md)
