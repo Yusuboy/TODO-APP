@@ -5,4 +5,4 @@
 #### [Komentorivi.txt](laskarit/viikko1/komentorivi.txt)
 ### **Viikko 2**
 #### [Kattavuusraportti screenshot](laskarit/viikko2/kattavuusraportti.png)
-
+#### [Vaatimuusmäärittely](dokumentaatio/vaatimuusmäärittely.md)
