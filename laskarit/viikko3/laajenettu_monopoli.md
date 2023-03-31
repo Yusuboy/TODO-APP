@@ -22,7 +22,7 @@ classDiagram
 
 
     note for Pelaajat "Pelaajilla on rahaa"
-    not for Pelaajat "Pelaaja voi omistaa kadun"
+    note for Pelaajat "Pelaaja voi omistaa kadun"
     note for Rakentaminen "Normaali katu-ruutuihin voidaan rakentaa korkeintaa 4 taloa tai yhden hotellin"
     note for Nopat "Pelataan käyttäen kaksi noppaa"
     note for Kortit "Sattuma -ja yhteismaaruutuihin liittyy kortteja, johon liittyy joku toiminto"
