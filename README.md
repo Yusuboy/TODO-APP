@@ -1,13 +1,7 @@
-# **Ohjelmisto Tekniikka, harjoitustyö**
 
-## **Tehtävät**
-### **Viikko 1**
-#### [Gitlog.txt](laskarit/viikko1/gitlog.txt) 
-#### [Komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-### **Viikko 2**
-#### [Kattavuusraportti screenshot](laskarit/viikko2/kattavuusraportti.png)
-#### [Vaatimuusmäärittely](dokumentaatio/vaatimusmaarittely.md)
-#### [Tuntikiranpito](dokumentaatio/tuntikirjanpito.md)
+# TODO-APP
+- Todo-appi on sovellus, joka auttaa käyttäjää pitämään yllä tehtävälistaa ja organisoimaan päivittäisiä tehtäviään. Joitakin esimerkkejä siitä, mitä todo-apilla voidaan tehdä, ovat: Luoda tehtävälista: Todo-apilla voit luoda luettelon tehtävistä, jotka sinun täytyy suorittaa. Merkitä tehtävä suoritetuksi: Kun olet suortittanut tehtävän niin voit merkitä  sen suoritetuksi
+
 
 ## **Dokumentaatio**
 - [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
