@@ -16,6 +16,4 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.password, 'SQLlover')
 
     
-
-
-
+    
