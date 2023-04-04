@@ -12,5 +12,5 @@
 ## **Dokumentaatio**
 - [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 - [Changelog](dokumentaatio/changelog.md)
-- [Vaatimuusmaaritttely](dokumentaatio/vaatimuusmaarittely.md)
+- [Vaatimuusmaaritttely](dokumentaatio/vaatimusmaarittely.md)
 
