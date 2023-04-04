@@ -7,7 +7,7 @@ class User:
 
     
     def create_todo(self, todo):
-        self.todos.append(todo)
+        self.todos.append(self.todo)
 
 
 

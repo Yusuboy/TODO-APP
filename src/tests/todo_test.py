@@ -11,7 +11,7 @@ class TestUser(unittest.TestCase):
 
     # test that shows todo-text is correct   
     def test_text_is_correct(self):
-        self.assertEqual(Self.todo.text, 'Suorita viikko 3 tehtävät')
+        self.assertEqual(self.todo.text, 'Suorita viikko 3 tehtävät')
 
     def test_completed_is_right(self):
         self.assertEqual(self.todo.completed, False)
