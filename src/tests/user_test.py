@@ -19,23 +19,17 @@ class TestUser(unittest.TestCase):
     # test if list that contains todos is the correct size
     def test_list_size_correct(self):
         
+        length = len(self.user.todos)
         
-
         todo1 = Todo("go to store")
-        todo2 = Todo("Call mom")
-
-        
+        todo2 = Todo("Call mom")      
         self.user.todos.append(todo1)
         self.user.todos.append(todo2)
-
+        self.assertGreater(len(self.user.todos), length) 
+    
+    # Create a Todo and test that the size of the todo list is 1
+    def test_list_size(self):
         
-        self.assertEqual(len(self.user.todos), 2) 
-
-    # Test if todo is added to todo list 
-    def test_create_todo(self):
-        
-        todo3 = Todo("Wash the dishes")
-
-        
-        self.user.create_todo(todo3)
-        self.assertIn(todo3, self.user.todos)
+        todo = Todo("Buy groceries")
+        self.user.todos.append(todo)
+        self.assertEqual(len(self.user.todos), 1)

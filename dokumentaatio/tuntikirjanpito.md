@@ -9,8 +9,8 @@
 | 1.4.  |      |  
 | 2.4.  |      | 
 | 3.4.  | 2    | Työskentelin viikko 3 tehtävien kanssa
-| 4.4.  |      |  
+| 4.4.  | 4    | Tein viikko 3 tehtävät loppuun 
 | 5.4.  |      | 
 | 6.4.  |      | 
 | 7.4.  |      |  
-| yht   | 9    |  
+| yht   | 13   |  
