@@ -16,12 +16,8 @@ class TodoApp:
             if user.name == name:
                 return user
         return None
-
-    def get_task_by_taskname(self, task_name: str, user: User):
-        pass
-
-
-    
+ 
+   
     def add_task_to_user(self, user_namr: str, task: str):
         user = self.get_user_by_username(user_name)
         if user:

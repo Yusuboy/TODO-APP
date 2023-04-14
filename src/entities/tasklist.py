@@ -1,4 +1,4 @@
-from tasks import Task
+from entities.tasks import Task
 class TaskList:
     def __init__(self):
         self.tasks = []
