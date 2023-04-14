@@ -1,16 +1,15 @@
+from tasklist import TaskList
 class User:
-
-    def __init__(self, username, password):
-        self.username = username
+    def __init__(self, name, password):
+        self.name = name
         self.password = password
-        self.todos = []
-
+        self.task_list = TaskList()
     
-    def create_todo(self, todo):
-        self.todos.append(self.todo)
-
-
-
+    def add_task(self, task):
+        self.task_list.add_task(task)
+    
+    def remove_task(self, task):
+        self.task_list.remove_task(task)
 
 
     

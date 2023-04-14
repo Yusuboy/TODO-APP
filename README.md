@@ -8,3 +8,6 @@
 - [Changelog](dokumentaatio/changelog.md)
 - [Vaatimuusmaaritttely](dokumentaatio/vaatimusmaarittely.md)
 
+
+## **Asennus**
+- Aseta riippuvuudet komennolla poetry install
