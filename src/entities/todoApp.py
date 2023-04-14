@@ -1,5 +1,5 @@
-from tasks import Task
-from user import User
+from entities.tasks import Task
+from entities.user import User
 
 
 class TodoApp:
@@ -18,7 +18,7 @@ class TodoApp:
         return None
  
    
-    def add_task_to_user(self, user_namr: str, task: str):
+    def add_task_to_user(self, user_name: str, task: str):
         user = self.get_user_by_username(user_name)
         if user:
             user.add_task(task)
@@ -29,9 +29,9 @@ class TodoApp:
             user.remove_task(task)
 
     def change_user_task_status(self, username:str, task:str):
-        user = self.get_user_by_username(user_name)
+        user = self.get_user_by_username(username)
         if user:
-            for i in user.task_list:
+            for i in user.task_list.tasks:
                 if i.name == task:
                     i.set_completed()
 

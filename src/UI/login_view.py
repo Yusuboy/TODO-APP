@@ -1,32 +1,46 @@
-from tkinter import Tk, ttk
+import tkinter as tk
+from tkinter import messagebox
 
-
-root = Tk()
-root.title("Todo App")
-
-
-
-
-username_label = ttk.Label(root, text="Käyttäjänimi:")
-username_label.pack()
-
-username_entry = ttk.Entry(root)
-username_entry.pack()
-
-password_label = ttk.Label(root, text=" Käyttäjätunnus:")
-password_label.pack()
-
-password_entry = ttk.Entry(root, show="*")
-password_entry.pack()
-
-def login():
-    username = username_entry.get()
-    password = password_entry.get()
-
-   
-
-login_button = ttk.Button(root, text="Kirjaudu", command=login)
-login_button.pack()
-
-root.mainloop()
-
+class LoginView:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.geometry("300x200")
+        self.root.title("Login")
+        self.root
+        
+        tk.Label(text="Hello, Tkinter")
+        # Create username label and entry widget
+        tk.Label(self.root, text="Username: ").grid(row=0, column=0)
+        self.username_entry = tk.Entry(self.root)
+        self.username_entry.grid(row=0, column=1)
+        
+        # Create password label and entry widget
+        tk.Label(self.root, text="Password: ").grid(row=1, column=0)
+        self.password_entry = tk.Entry(self.root, show="*")
+        self.password_entry.grid(row=1, column=1)
+        
+        # Create login button
+        login_button = tk.Button(self.root, text="Login", command=self.login)
+        login_button.grid(row=2, column=1)
+        
+        # Create error message label
+        self.error_message = tk.Label(self.root, text="", fg="red")
+        self.error_message.grid(row=3, column=1)
+        
+        self.root.mainloop()
+    
+    def login(self):
+        # TODO: Implement login functionality
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+        
+        if username == "admin" and password == "password":
+            # Login successful, close the login window
+            self.root.destroy()
+            # TODO: Open the main to-do app window here
+        else:
+            # Login failed, display error message
+            self.error_message.config(text="Invalid username or password")
+            
+if __name__ == '__main__':
+    app = LoginView()
