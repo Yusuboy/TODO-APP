@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from entities.user import User
 
 class LoginView:
     def __init__(self):
@@ -8,7 +9,7 @@ class LoginView:
         self.root.title("Login")
         self.root
         
-        tk.Label(text="Hello, Tkinter")
+        tk.Label(text="Welcome to Todo-App")
         # Create username label and entry widget
         tk.Label(self.root, text="Username: ").grid(row=0, column=0)
         self.username_entry = tk.Entry(self.root)

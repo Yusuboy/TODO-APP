@@ -79,8 +79,28 @@ class Test_TodoApp(unittest.TestCase):
         user = self.todo.create_user(name, password)
         self.todo.add_task_to_user(name, task_name)
 
-
         self.todo.change_user_task_status(name, task_name)
 
 
         self.assertTrue(user.task_list.tasks[0].completed)
+
+
+    def test_change_user_task_status_method_user_false(self):
+    
+        virhe = self.todo.change_user_task_status("Yonis", 'Imuroi')
+         
+        self.assertFalse(virhe)
+
+    
+    def test_change_user_task_status_method_task_false(self):
+        name = "Yuusuf"
+        password = "SQLlover"
+        task_name = "Käy kaupassa"
+        user = self.todo.create_user(name, password)
+        self.todo.add_task_to_user(name, 'Harjoittelee tenttiin')
+        virhe = self.todo.change_user_task_status(name, 'Imuroi')
+
+        self.assertFalse(virhe)
+        
+        
+
