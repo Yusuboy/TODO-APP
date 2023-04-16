@@ -18,7 +18,6 @@ class Test_Tasklist(unittest.TestCase):
         self.assertEqual(len(self.task_list.tasks), 1)
         self.task_list.remove_task(task_name)
         self.assertEqual(len(self.task_list.tasks), 0)
-        
 
     def test_remiving_task_that_don_exist(self):
         task_name = "Heitä roskat"
