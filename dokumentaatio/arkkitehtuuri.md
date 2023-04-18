@@ -6,7 +6,7 @@
           password: str
           tasklist: Tasklist
       }
-      class Todo{
+      class Task{
           name: str
           completed: bool
       }
