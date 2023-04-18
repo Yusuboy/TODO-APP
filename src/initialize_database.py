@@ -28,7 +28,7 @@ def initialize_database():
     collect = get_database_connection()
 
     drop_table(collect)
-    create_table(collect)
+    create_tables(collect)
 
 
 

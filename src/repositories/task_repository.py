@@ -1,18 +1,23 @@
-
+from database_connection import get_database_connection
+from entities.tasklist import TaskList
 
 
 class TaskDatabase:
-    def __init__(self, db_file):
-        self.conn = sqlite3.connect(db_file)
+    def __init__(self, connection):
+        
+        self.connection = connection
 
-    def add_task(self, task, user_id):
-        self.conn.execute(f"INSERT INTO tasks (name, completed, user_id) VALUES (?, ?, ?)", (task.name, int(task.completed), user_id))
-        self.conn.commit()
+    def add_task(self, task_name, user_name):
+        db = self.connection.cursor()
+        user_id = db.execute("SELECT id FROM Users WHERE name = ?", (user_name,)).fetchone()
+        if user_id:
+            user_id = user_id[0]
+            db.execute("INSERT INTO Tasks (user_id, task, completed) VALUES (?, ?, ?)", (user_id, task_name, False))
+            self.connection.commit()
+            
+        
 
-    def update_task(self, task):
-        self.conn.execute(f"UPDATE tasks SET name=?, completed=? WHERE id=?", (task.name, int(task.completed), task.id))
-        self.conn.commit()
+    
+    
 
-    def delete_task(self, task):
-        self.conn.execute(f"DELETE FROM tasks WHERE id=?", (task.id,))
-        self.conn.commit()
+task_repository = TaskDatabase(get_database_connection())
