@@ -7,8 +7,10 @@
 - Testattiin, että todo ja user tiedostot toimivat tähän asti kuin pitäisi.
 
 ## Viikko 4
-- Tein ohjelman luokat uusiksi sillä ilmeni paljon ongelmia. Sain tehtyä tietokannan ja siihen yhteyden oton sekä sain valmiiksi repository luokat, joiden avulla hyödyntää tietokantaa.
-Sain service luokan valmiiksi ja tehtiin sille testit. Suurin osa testeistä menivät läpi. 
-ollaan tehty kyselyjä, joiden avulla voidaan hallita mitä tietoa halutaan tietokannasta.
+- Sain tehtyä tietokannan ja siihen yhteyden oton sekä sain valmiiksi repository luokat, joiden avulla hyödyntää tietokantaa.
+- Saatiin valmiiksi Serice luokka tehtyä hyvään pisteeseen.
+-Sain service luokan perustoiminnalisuudet valmiiksi ja tehtiin sille testit.
+- Ollaan tehty kyselyjä, joiden avulla voidaan hallita mitä tietoa halutaan tietokannasta. 
 - Tehtiin testejä repository luokille sekä service luokalle. 
+- Ollaan rakennettu ui hakemiston logi_view tiedosto. Ei vielä valmis. tiedetään toiminnallisuus
 - seuraavaksi olisi tavoitteena saada ui valmiiksi. Olen alkanut suunittelemaan sitä, mutta siitä puuttuu viel yhteys logiikaan.

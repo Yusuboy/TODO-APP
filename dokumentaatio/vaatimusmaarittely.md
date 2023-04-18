@@ -5,7 +5,7 @@
 
 ## Sovelluken tarjoama toiminnallisuus
 ### Ennen rekiseröitymistä
-- Käyttäjä voi luoda sovellukseen käyttäjätunnuksen, jonka avulla käyttäjä kykenee kirjautumaan järjestelmään. 
+- Käyttäjä voi luoda sovellukseen käyttäjätunnuksen, jonka avulla käyttäjä kykenee kirjautumaan järjestelmään. Tehty
 -Käyttäjä kykenee kirjautumaanjärjestelmään olemassa olevan käyttäjätunnuksen avulla. 
 
 ## Kirjautumisen jälkeen 
