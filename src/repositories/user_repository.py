@@ -90,7 +90,7 @@ class UserDatabase:
 
     def delete_everything(self):
         cursor = self.connection.cursor()
-        cursor.execute(f"Delete from Users")
+        cursor.execute("DELETE FROM Users")
         self.connection.commit()
 
 
