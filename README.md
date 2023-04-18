@@ -16,7 +16,7 @@
 poetry install
 ```
 
- **2. Sovelluksen voi käynnistää komennollla:**
+ **2. Sovelluksen voi käynnistää komennolla:**
 ```bash
 poetry run invoke start
 ```
@@ -26,7 +26,7 @@ poetry run invoke start
 
 ### **Ohjelman suorittaminen**
 
- **Ohejelma voi käynistää komennolla:**
+ **Ohejelman voi käynistää komennolla:**
 ```bash
 poetry run invoke start
 ```
