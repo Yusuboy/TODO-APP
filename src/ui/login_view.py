@@ -1,35 +1,36 @@
 import tkinter as tk
-from tkinter import messagebox
-
 
 class LoginView:
-    def __init__(self):
-        self.root = tk.Tk()
-        self.root.geometry("300x200")
-        self.root.title("Login")
-        self.root
+    def __init__(self, master):
+        self.master = master
+        self.master.title("Login")
+        self.master.geometry("300x200")
 
-        tk.Label(text="Welcome to Todo-App")
-       
-        tk.Label(self.root, text="Username: ").grid(row=0, column=0)
-        self.username_entry = tk.Entry(self.root)
-        self.username_entry.grid(row=0, column=1)
+        # Create username label and entry
+        self.username_label = tk.Label(self.master, text="Username:")
+        self.username_label.pack()
+        self.username_entry = tk.Entry(self.master)
+        self.username_entry.pack()
 
-       
-        tk.Label(self.root, text="Password: ").grid(row=1, column=0)
-        self.password_entry = tk.Entry(self.root, show="*")
-        self.password_entry.grid(row=1, column=1)
+        # Create password label and entry
+        self.password_label = tk.Label(self.master, text="Password:")
+        self.password_label.pack()
+        self.password_entry = tk.Entry(self.master, show="*")
+        self.password_entry.pack()
 
         # Create login button
-        login_button = tk.Button(self.root, text="Login", command=None)
-        login_button.grid(row=2, column=1)
+        self.login_button = tk.Button(self.master, text="Login", command=self.login)
+        self.login_button.pack()
 
-        self.error_message = tk.Label(self.root, text="", fg="red")
-        self.error_message.grid(row=3, column=1)
+    def login(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+        # Perform login validation logic here
+        print("Username:", username)
+        print("Password:", password)
 
-        self.root.mainloop()
-
-   
-
-if __name__ == '__main__':
-    app = LoginView()
+# Example usage:
+if __name__ == "__main__":
+    root = tk.Tk()
+    login_view = LoginView(root)
+    root.mainloop()
