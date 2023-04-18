@@ -1,6 +1,6 @@
 ```mermaid
  classDiagram
-      Task "*" --> "1" User
+      Task  -->  User
       Task -- Tasklist
       class User{
           name: str
