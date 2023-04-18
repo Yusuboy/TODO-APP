@@ -1,6 +1,7 @@
 ```mermaid
  classDiagram
       Task "*" --> "1" User
+      Task -- Tasklist
       class User{
           name: str
           password: str
@@ -9,5 +10,8 @@
       class Task{
           name: str
           completed: bool
+      }
+      class Tasklist {
+        tasks: list
       }
 ```
