@@ -11,8 +11,6 @@ class TodoApp:
         self.users = []
         self.user_db = UserDatabase(get_database_connection())
         self.task_db = TaskDatabase(get_database_connection())
-                
-
     def create_user(self, name: str, password: str):
         user = User(name, password)
         if user.name not in self.users:
@@ -38,7 +36,6 @@ class TodoApp:
             return task
         return None
 
-
     def get_users_tasks(self, user_name: str):
         user = self.get_user_by_username(user_name)
         if user:
@@ -46,8 +43,6 @@ class TodoApp:
             return user.task_list.tasks
         return None
 
-
-    
     def get_users_undone_tasks(self, name):
         user = self.get_user_by_username(name)
         if user:
@@ -59,7 +54,6 @@ class TodoApp:
             return undone_tasks
         return None
 
-    
     def get_users_done_tasks(self, name):
         user = self.get_user_by_username(name)
         if user:

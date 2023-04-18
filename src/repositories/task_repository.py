@@ -14,5 +14,4 @@ class TaskDatabase:
             cursor.execute("INSERT INTO Tasks (user_id, task, completed) VALUES (?, ?, ?)",
            (user_id, task_name, False))
             self.connection.commit()
-            
 task_repository = TaskDatabase(get_database_connection())

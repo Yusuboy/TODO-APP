@@ -14,7 +14,6 @@ def create_tables(collect):
                    "user_id INTEGER REFERENCES Users, "
                    "task TEXT, "
                    "completed TEXT NOT NULL);")
-  
     collect.commit()
 
 def initialize_database():
