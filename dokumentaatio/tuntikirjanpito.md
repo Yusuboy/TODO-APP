@@ -8,5 +8,7 @@
 | 4.4.  | 4    | Tein testit loppuun|
 | 13.4  | 6    | Tein entities luokat uusiksi, koska ilmeni outoja bugeja
 | 14.4  | 8    | Tein entities testit ja työskentelin UI kanssa
-| 16.4  |    | Tein alotin tietokannan rakentamisen ja laajensin TodoApp luokkaa aloin testamaan tietokantaa
-| yht   | 31   |  
+| 16.4  | 6    | Alotin tietokannan rakentamisen ja laajensin TodoApp luokkaa aloin testamaan tietokantaa
+| 17.4  | 7    | Tietokannan muodoostamisessa esiintyi ongelmia. Alettiin rakentamaan service luokkaa ja laajentamaan repositorien luokkia
+| 18.4  | 4    | Tietokanta yhteys ja Repostiry luokkie tehtiin. Service luokkaa tehtiin. Tehtiin testejä. 
+| yht   | 44   |  

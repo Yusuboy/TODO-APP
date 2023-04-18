@@ -17,5 +17,5 @@
 - Käyttäjä voi kirjautua ulos järjestelmästä.
 
 ## Jatkokehitysideoita
-- Kirjatumninen vaatii salsanan luomise
+- Todot voidaan priorisoida
 - Mahdollisuus useaan eri todo-listaan

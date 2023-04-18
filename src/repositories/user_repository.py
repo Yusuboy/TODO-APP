@@ -47,7 +47,7 @@ class UserDatabase:
 
     def delete_task(self, name, task):
         db = self.connection.cursor()
-        db.execute("DELETE FROM Tasks WHERE user_id = (SELECT id FROM Users WHERE name = ?) AND name = ?;", (name, task))
+        db.execute("DELETE FROM Tasks WHERE user_id = (SELECT id FROM Users WHERE name = ?) AND task = ?;", (name, task))
         self.connection.commit()
 
     def get_tasks_of_user(self, name):
