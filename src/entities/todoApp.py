@@ -1,14 +1,23 @@
 from entities.tasks import Task
 from entities.user import User
+from repositories.user_repository import UserDatabase
+
+from database_connection import get_database_connection
 
 
 class TodoApp:
     def __init__(self):
         self.users = []
+        self.user_db = UserDatabase(get_database_connection())
+        
+
+        
 
     def create_user(self, name: str, password: str):
         user = User(name, password)
         self.users.append(user)
+        self.user_db.create_user(user)
+
         return user
 
     def get_user_by_username(self, name: str):

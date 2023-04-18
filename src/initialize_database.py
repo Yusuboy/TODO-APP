@@ -1,15 +1,36 @@
-import sqlite3
-import os
+from database_connection import get_database_connection
 
 
-if os.path.exists("Todo.db"):
-    os.remove("Todo.db")
+def drop_table(collect):
+    db_connect = collect.cursor()
+    db_connect.execute("DROP TABLE if exists Users ")
+    db_connect.execute("DROP TABLE IF EXISTS Tasks ")
+    collect.commit()
 
-db = sqlite3.connect("Todo.db")
-db.isolation_level = None
 
-def create_table():
-    db.execute(f"create table User (id INTEGER PRIMARY KEY, name TEXT, password TEXT)")
-    db.execute(f"create table todos (id INTEGER PRIMARY KEY, user_id INTEGER REFERENCES User, tasks TEXT, completed INTEGER NOT NULL)")
 
-create_table()
+def create_tables(collect):
+
+    db_connect = collect.cursor()
+    db_connect.execute("CREATE TABLE Users (id integer PRIMARY KEY, name TEXT, password TEXT);")
+    db_connect.execute("CREATE TABLE Tasks (id INTEGER PRIMARY KEY, user_id INTEGER REFERENCES Users, task TEXT, completed TEXT NOT NULL);")
+    
+    collect.commit()
+
+
+
+
+
+
+
+def initialize_database():
+    
+    collect = get_database_connection()
+
+    drop_table(collect)
+    create_table(collect)
+
+
+
+initialize_database()
+    
