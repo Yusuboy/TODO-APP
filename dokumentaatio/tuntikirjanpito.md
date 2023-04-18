@@ -10,5 +10,5 @@
 | 14.4  | 8    | Tein entities testit ja työskentelin UI kanssa
 | 16.4  | 6    | Alotin tietokannan rakentamisen ja laajensin TodoApp luokkaa aloin testamaan tietokantaa
 | 17.4  | 7    | Tietokannan muodoostamisessa esiintyi ongelmia. Alettiin rakentamaan service luokkaa ja laajentamaan repositorien luokkia
-| 18.4  | 4    | Tietokanta yhteys ja Repostiry luokkie tehtiin. Service luokkaa tehtiin. Tehtiin testejä. 
+| 18.4  | 4    | Tietokanta yhteys ja Repostiry luokkie tehtiin. Service luokkaa tehtiin. Tehtiin testejä. Pylint otettu käyttöön
 | yht   | 44   |  

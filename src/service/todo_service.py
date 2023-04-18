@@ -85,4 +85,4 @@ class TodoApp:
             for i in user.task_list.tasks:
                 if i.name == task:
                     i.set_completed()
-                    self.task_db.update_task(task)
+                    self.user_db.update_users_task(username, task)
