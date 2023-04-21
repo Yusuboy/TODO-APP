@@ -5,20 +5,29 @@ from repositories.task_repository import TaskDatabase
 
 from database_connection import get_database_connection
 
+class InvalidCredentialsError(Exception):
+    pass
+
+
+class UsernameExistsError(Exception):
+    pass
 
 class TodoApp:
     def __init__(self):
         self.users = []
         self.user_db = UserDatabase(get_database_connection())
         self.task_db = TaskDatabase(get_database_connection())
+        
     def create_user(self, name: str, password: str):
         user = User(name, password)
         if user.name not in self.users:
-
             self.users.append(user)
             self.user_db.create_user(user)
-
             return user
+        
+        else:
+            raise UsernameExistsError(f"Username {username} already exists")
+
 
     def get_user_by_username(self, name: str):
         for user in self.users:
@@ -27,6 +36,15 @@ class TodoApp:
 
                 return user
         return None
+
+
+    def signin(self, username, password):
+        user = get_user_by_username(username)
+        if not user or user.password not in users:
+            raise InvalidCredentialsError("Invalid username or password")
+
+        return user
+
 
     def add_task_to_user(self, user_name: str, task: str):
         user = self.get_user_by_username(user_name)

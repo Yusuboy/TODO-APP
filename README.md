@@ -43,10 +43,7 @@ poetry run invoke test
 ```bash
 poetry run invoke coverage-report
 ```
-**Tällöin raportti generoituu htmlcov-hakemistoon. Kyeseisessä hakemistossa voit suorittaa komennon:**
-```bash
-firefox index.html
-```
+
 **Tämä komento avaa nettiselaimeen, jossa on testikattavuusraporriin**
 
 ### **Pylint**

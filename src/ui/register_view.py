@@ -1,11 +1,11 @@
 import tkinter as tk
 from service.todo_service import TodoApp
 
-class LoginView:
-    def __init__(self, master, manage_login, manage_create_user_view):
+class RegisterView:
+    def __init__(self, master, manage_register, manage_login_view):
         self.master = master
-        self.manage_login = login
-        self.manage_create_user_view = create_user_view
+        self.manage_register = manage_register
+        self.manage_login_view = manage_login_view
 
         self.frame = None
         self.indentification_entry = None
@@ -23,16 +23,20 @@ class LoginView:
         self.frame.destroy()
 
 
-    def login_manager(self):
+    def create_user_manager(self):
         username = self.indentification_entry.get()
         password = self.matchword_entry.get()
+
+        if len(username) == 0 or len(password) == 0:
+            self.show_error("Username and password is required")
+            return
     
         try:
-            TodoApp.signin(username, password)
-            self.manage_login()
+            TodoApp.create_user(username, password)
+            self.manage_register()
 
-        except InvalidCredentialsError:
-            self.show_error("Invalid username or password")
+        except UsernameExistsError:
+            self.show_error(f"Username {username} already exists")
 
     
     def show_error(self, message):
@@ -71,21 +75,21 @@ class LoginView:
         self.setup_username_domain()
         self.setup_password_domain()
 
+        register_user_button = ttk.Button(
+            master=self.frame,
+            text="Register",
+            command=self.create_user_manager
+        )
+
         login_button = ttk.Button(
             master=self.frame,
             text="Login",
-            command=self.login_manager
-        )
-
-        create_user_button = ttk.Button(
-            master=self.frame,
-            text="Create new user",
-            command=self.manage_create_user_view
+            command=self.manage_login_view
         )
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=400)
 
+        register_user_button.grid(padx=5, pady=5, sticky=constants.EW)
         login_button.grid(padx=5, pady=5, sticky=constants.EW)
-        create_user_button.grid(padx=5, pady=5, sticky=constants.EW)
 
         self._hide_error()
