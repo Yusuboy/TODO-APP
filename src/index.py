@@ -1,16 +1,22 @@
-import tkinter as tk
-from ui.login_view import LoginView
-root = tk.Tk()
+from tkinter import Tk
+from ui.ui import UI
 
-def manage_login():
-    # Code to switch to the main to-do list view
-    pass
 
-def manage_create_user_view():
-    # Code to switch to the create user view
-    pass
+ 
 
-login_view = LoginView(root, manage_login, manage_create_user_view)
-login_view.pack()
+from tkinter import Tk
+from ui.ui import UI
 
-root.mainloop()
+
+def main():
+    window = Tk()
+    window.title("Todo-APP")
+
+    ui_view = UI(window)
+    ui_view.initate()
+
+    window.mainloop()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,18 +1,18 @@
-import tkinter as tk
-from service.todo_service import TodoApp
+from tkinter import ttk, StringVar, constants
+from service.todo_service import TodoApp, InvalidCredentialsError, UsernameExistsError, app_service
+
 
 class LoginView:
     def __init__(self, master, manage_login, manage_create_user_view):
         self.master = master
-        self.manage_login = login
-        self.manage_create_user_view = create_user_view
+        self.manage_login = manage_login
+        self.manage_create_user_view = manage_create_user_view
 
         self.frame = None
         self.indentification_entry = None
         self.matchword_entry = None
         self.error_variable = None
         self.error_label = None
-
         self._initialize()
 
 
@@ -28,7 +28,7 @@ class LoginView:
         password = self.matchword_entry.get()
     
         try:
-            TodoApp.signin(username, password)
+            app_service.signin(username, password)
             self.manage_login()
 
         except InvalidCredentialsError:
@@ -43,8 +43,8 @@ class LoginView:
         self.error_label.grid_remove()
 
     def setup_username_domain(self):
-
-        self.username_label = tk.Label(master = self.frame, text="Username:")
+        
+        username_label = ttk.Label(master = self.frame, text="Username:")
         self.indentification_entry = ttk.Entry(master=self.frame)
         username_label.grid(padx=5, pady=5, sticky=constants.W)
         self.indentification_entry.grid(padx=5, pady=5, sticky=constants.EW)
@@ -52,7 +52,7 @@ class LoginView:
     
     def setup_password_domain(self):
 
-        self.password_label = tk.Label(master = self.frame, text="Password:")
+        password_label = ttk.Label(master = self.frame, text="Password:")
         self.matchword_entry = ttk.Entry(master=self.frame)
         password_label.grid(padx=5, pady=5, sticky=constants.W)
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
@@ -60,7 +60,7 @@ class LoginView:
 
     def _initialize(self):
         self.frame = ttk.Frame(master=self.master)
-        self.error_variable = StringVar(self._frame)
+        self.error_variable = StringVar(self.frame)
         self.error_label = ttk.Label(
             master=self.frame,
             textvariable=self.error_variable,
@@ -83,9 +83,9 @@ class LoginView:
             command=self.manage_create_user_view
         )
 
-        self._frame.grid_columnconfigure(0, weight=1, minsize=400)
+        self.frame.grid_columnconfigure(0, weight=1, minsize=400)
 
         login_button.grid(padx=5, pady=5, sticky=constants.EW)
         create_user_button.grid(padx=5, pady=5, sticky=constants.EW)
 
-        self._hide_error()
+        self.hide_error()

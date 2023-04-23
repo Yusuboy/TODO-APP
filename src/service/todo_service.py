@@ -15,35 +15,46 @@ class UsernameExistsError(Exception):
 class TodoApp:
     def __init__(self):
         self.users = []
+        self.user = None
         self.user_db = UserDatabase(get_database_connection())
         self.task_db = TaskDatabase(get_database_connection())
         
-    def create_user(self, name: str, password: str):
-        user = User(name, password)
-        if user.name not in self.users:
-            self.users.append(user)
-            self.user_db.create_user(user)
-            return user
+    def create_user(self, username: str, password: str, signin: True):
+        for i in self.users:
+            if i.name == username:
+                raise UsernameExistsError(f"Username {username} already exists")
+                
+        user = User(username, password)
+        self.users.append(user)
+        self.user_db.create_user(user)
+        if signin:
+            self.user = user
         
-        else:
-            raise UsernameExistsError(f"Username {username} already exists")
+        return user
+        
 
 
     def get_user_by_username(self, name: str):
         for user in self.users:
             if user.name == name:
                 self.user_db.find_by_username(name)
-
                 return user
         return None
 
 
     def signin(self, username, password):
-        user = get_user_by_username(username)
-        if not user or user.password not in users:
+        user = self.get_user_by_username(username)
+        if not user or user.password not in self.users:
             raise InvalidCredentialsError("Invalid username or password")
 
         return user
+
+
+    def logout(self):
+        self.user = None
+
+    def get_current_user(self):
+        return self.user
 
 
     def add_task_to_user(self, user_name: str, task: str):
@@ -98,3 +109,6 @@ class TodoApp:
                 if i.name == task:
                     i.set_completed()
                     self.user_db.update_users_task(username, task)
+
+
+app_service = TodoApp()

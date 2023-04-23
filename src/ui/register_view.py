@@ -1,5 +1,5 @@
-import tkinter as tk
-from service.todo_service import TodoApp
+from tkinter import ttk, StringVar, constants
+from service.todo_service import TodoApp, InvalidCredentialsError, UsernameExistsError, app_service
 
 class RegisterView:
     def __init__(self, master, manage_register, manage_login_view):
@@ -12,8 +12,8 @@ class RegisterView:
         self.matchword_entry = None
         self.error_variable = None
         self.error_label = None
-
-        self._initialize()
+        
+        self.initialize()
 
 
     def pack(self):
@@ -32,7 +32,7 @@ class RegisterView:
             return
     
         try:
-            TodoApp.create_user(username, password)
+            app_service.create_user(username, password, signin=True)
             self.manage_register()
 
         except UsernameExistsError:
@@ -48,7 +48,7 @@ class RegisterView:
 
     def setup_username_domain(self):
 
-        self.username_label = tk.Label(master = self.frame, text="Username:")
+        username_label = ttk.Label(master = self.frame, text="Username:")
         self.indentification_entry = ttk.Entry(master=self.frame)
         username_label.grid(padx=5, pady=5, sticky=constants.W)
         self.indentification_entry.grid(padx=5, pady=5, sticky=constants.EW)
@@ -56,15 +56,15 @@ class RegisterView:
     
     def setup_password_domain(self):
 
-        self.password_label = tk.Label(master = self.frame, text="Password:")
+        password_label = ttk.Label(master = self.frame, text="Password:")
         self.matchword_entry = ttk.Entry(master=self.frame)
         password_label.grid(padx=5, pady=5, sticky=constants.W)
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
 
-    def _initialize(self):
+    def initialize(self):
         self.frame = ttk.Frame(master=self.master)
-        self.error_variable = StringVar(self._frame)
+        self.error_variable = StringVar(self.frame)
         self.error_label = ttk.Label(
             master=self.frame,
             textvariable=self.error_variable,
@@ -87,9 +87,9 @@ class RegisterView:
             command=self.manage_login_view
         )
 
-        self._frame.grid_columnconfigure(0, weight=1, minsize=400)
+        self.frame.grid_columnconfigure(0, weight=1, minsize=400)
 
         register_user_button.grid(padx=5, pady=5, sticky=constants.EW)
         login_button.grid(padx=5, pady=5, sticky=constants.EW)
 
-        self._hide_error()
+        self.hide_error()
