@@ -11,17 +11,23 @@ class Users_tasklist_view:
 
         self.initialize()
 
+
+    def dismantle(self):
+        self.frame.destroy()
+
+
+
     def pack(self):
         self.frame.pack(fill=constants.X)
 
     def initialize_task_status(self, todo):
         item_frame = ttk.Frame(master=self.frame)
-        update_label = ttk.Label(master=item_frame, text=todo.content)
+        update_label = ttk.Label(master=item_frame, text=str(todo))
 
         update_task_button = ttk.Button(
             master=item_frame,
             text="Done",
-            command=lambda: self.manage_task_status(username,task)
+            command=lambda: self.manage_task_status(todo)
         )
 
         update_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
@@ -33,6 +39,9 @@ class Users_tasklist_view:
             pady=5,
             sticky=constants.EW
         )
+
+        item_frame.grid_columnconfigure(0, weight=1)
+        item_frame.pack(fill=constants.X)
 
         item_frame.grid_columnconfigure(0, weight=1)
         item_frame.pack(fill=constants.X)
@@ -67,7 +76,7 @@ class TaskView:
         self.handle_logout()
 
     def manage_task_status(self, task):
-        app_service.update_users_task(self.user.name, task)
+        app_service.change_user_task_status(self.user.name, task)
         self.initialize_todo_list(self.user.name)
 
         

@@ -44,10 +44,12 @@ class TodoApp:
 
     def signin(self, username, password):
         user = self.get_user_by_username(username)
-        if not user or user.password not in self.users:
+        if user and user.password == password:
+            self.user = user
+            return user
+        else:
             raise InvalidCredentialsError("Invalid username or password")
 
-        return user
 
 
     def logout(self):

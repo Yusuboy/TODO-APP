@@ -44,7 +44,7 @@ class UI:
         self.current_outlook = RegisterView(
             self.master,
             self.show_todos_view,
-            self.display_login_view()
+            self.display_login_view
         )
 
         self.current_outlook.pack()

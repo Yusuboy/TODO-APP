@@ -53,7 +53,7 @@ class LoginView:
     def setup_password_domain(self):
 
         password_label = ttk.Label(master = self.frame, text="Password:")
-        self.matchword_entry = ttk.Entry(master=self.frame)
+        self.matchword_entry = ttk.Entry(master=self.frame, show="*")
         password_label.grid(padx=5, pady=5, sticky=constants.W)
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
 

@@ -11,4 +11,5 @@
 | 16.4  | 6    | Alotin tietokannan rakentamisen ja laajensin TodoApp luokkaa aloin testamaan tietokantaa
 | 17.4  | 7    | Tietokannan muodoostamisessa esiintyi ongelmia. Alettiin rakentamaan service luokkaa ja laajentamaan repositorien luokkia
 | 18.4  | 6    | Tietokanta yhteys ja Repostiry luokkie tehtiin. Service luokkaa tehtiin. Tehtiin testejä. Pylint otettu käyttöön
-| yht   | 46   |  
+| 23.4  | 4    | Alettiin konstruktoimaan ui luokat ja saatiin ne hyvään malliin
+| yht   | 50   |  

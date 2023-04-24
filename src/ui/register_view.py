@@ -57,7 +57,7 @@ class RegisterView:
     def setup_password_domain(self):
 
         password_label = ttk.Label(master = self.frame, text="Password:")
-        self.matchword_entry = ttk.Entry(master=self.frame)
+        self.matchword_entry = ttk.Entry(master=self.frame, show="*")
         password_label.grid(padx=5, pady=5, sticky=constants.W)
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
@@ -81,15 +81,11 @@ class RegisterView:
             command=self.create_user_manager
         )
 
-        login_button = ttk.Button(
-            master=self.frame,
-            text="Login",
-            command=self.manage_login_view
-        )
+        
 
         self.frame.grid_columnconfigure(0, weight=1, minsize=400)
 
         register_user_button.grid(padx=5, pady=5, sticky=constants.EW)
-        login_button.grid(padx=5, pady=5, sticky=constants.EW)
+       
 
         self.hide_error()
