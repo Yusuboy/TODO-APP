@@ -8,7 +8,8 @@
 - [Changelog](dokumentaatio/changelog.md)
 - [Vaatimuusmaaritttely](dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
-
+****
+## **[Release 1](https://github.com/Yusuboy/ot-harjoitustyo/archive/refs/tags/Viikko5.zip)**
 ****
 ## **Asennus**
  **1. Asenna riippuvuudet komennolla:**
