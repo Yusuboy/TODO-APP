@@ -17,7 +17,12 @@
 poetry install
 ```
 
- **2. Sovelluksen voi käynnistää komennolla:**
+ **2. Suorita vaadittavat alustoimenpiteet komennolla:**
+```bash
+poetry run invoke build
+``` 
+
+ **3. Sovelluksen voi käynnistää komennolla:**
 ```bash
 poetry run invoke start
 ```
