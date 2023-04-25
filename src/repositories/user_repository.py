@@ -8,7 +8,7 @@ class UserDatabase:
 
     def create_user(self, user):
         cursor = self.connection.cursor()
-        cursor.execute("INSERT INTO Users (name, password) VALUES (?, ?)", 
+        cursor.execute("INSERT INTO Users (name, password) VALUES (?, ?)",
         (user.name, user.password))
         self.connection.commit()
         return user

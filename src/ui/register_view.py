@@ -13,7 +13,7 @@ class RegisterView:
         self.error_variable = None
         self.error_label = None
         
-        self.initialize()
+        self.assign()
 
 
     def pack(self):
@@ -49,7 +49,7 @@ class RegisterView:
     def setup_username_domain(self):
 
         username_label = ttk.Label(master = self.frame, text="Username:")
-        self.indentification_entry = ttk.Entry(master=self.frame)
+        self.indentification_entry = ttk.Entry(master=self.frame, style="Custom.TEntry")
         username_label.grid(padx=5, pady=5, sticky=constants.W)
         self.indentification_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
@@ -57,12 +57,12 @@ class RegisterView:
     def setup_password_domain(self):
 
         password_label = ttk.Label(master = self.frame, text="Password:")
-        self.matchword_entry = ttk.Entry(master=self.frame, show="*")
+        self.matchword_entry = ttk.Entry(master=self.frame, show="*", style="Custom.TEntry")
         password_label.grid(padx=5, pady=5, sticky=constants.W)
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
 
-    def initialize(self):
+    def assign(self):
         self.frame = ttk.Frame(master=self.master)
         self.error_variable = StringVar(self.frame)
         self.error_label = ttk.Label(
@@ -78,7 +78,8 @@ class RegisterView:
         register_user_button = ttk.Button(
             master=self.frame,
             text="Register",
-            command=self.create_user_manager
+            command=self.create_user_manager,
+            style="Custom.TButton"
         )
 
         
@@ -89,3 +90,13 @@ class RegisterView:
        
 
         self.hide_error()
+
+        self.master.style = ttk.Style(self.master)
+        self.master.style.theme_use('clam')
+
+        self.master.style.configure('Custom.TButton', 
+                                    background='#FFC107', 
+                                    foreground='black',
+                                    padding=10, 
+                                    font=('Helvetica'))
+       

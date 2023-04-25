@@ -2,12 +2,6 @@ from tkinter import Tk
 from ui.ui import UI
 
 
- 
-
-from tkinter import Tk
-from ui.ui import UI
-
-
 def main():
     window = Tk()
     window.title("Todo-APP")

@@ -18,20 +18,20 @@ class TodoApp:
         self.user = None
         self.user_db = UserDatabase(get_database_connection())
         self.task_db = TaskDatabase(get_database_connection())
-        
+
     def create_user(self, username: str, password: str, signin: True):
         for i in self.users:
             if i.name == username:
                 raise UsernameExistsError(f"Username {username} already exists")
-                
+
         user = User(username, password)
         self.users.append(user)
         self.user_db.create_user(user)
         if signin:
             self.user = user
-        
+
         return user
-        
+
 
 
     def get_user_by_username(self, name: str):
@@ -47,8 +47,8 @@ class TodoApp:
         if user and user.password == password:
             self.user = user
             return user
-        else:
-            raise InvalidCredentialsError("Invalid username or password")
+
+        raise InvalidCredentialsError("Invalid username or password")
 
 
 

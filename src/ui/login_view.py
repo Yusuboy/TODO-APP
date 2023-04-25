@@ -1,7 +1,6 @@
 from tkinter import ttk, StringVar, constants
 from service.todo_service import TodoApp, InvalidCredentialsError, UsernameExistsError, app_service
 
-
 class LoginView:
     def __init__(self, master, manage_login, manage_create_user_view):
         self.master = master
@@ -13,7 +12,7 @@ class LoginView:
         self.matchword_entry = None
         self.error_variable = None
         self.error_label = None
-        self._initialize()
+        self.initialize()
 
 
     def pack(self):
@@ -44,21 +43,21 @@ class LoginView:
 
     def setup_username_domain(self):
         
-        username_label = ttk.Label(master = self.frame, text="Username:")
-        self.indentification_entry = ttk.Entry(master=self.frame)
+        username_label = ttk.Label(master=self.frame, text="Username:")
+        self.indentification_entry = ttk.Entry(master=self.frame, style="Custom.TEntry")
         username_label.grid(padx=5, pady=5, sticky=constants.W)
         self.indentification_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
     
     def setup_password_domain(self):
 
-        password_label = ttk.Label(master = self.frame, text="Password:")
-        self.matchword_entry = ttk.Entry(master=self.frame, show="*")
+        password_label = ttk.Label(master=self.frame, text="Password:")
+        self.matchword_entry = ttk.Entry(master=self.frame, show="*", style="Custom.TEntry")
         password_label.grid(padx=5, pady=5, sticky=constants.W)
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
 
-    def _initialize(self):
+    def initialize(self):
         self.frame = ttk.Frame(master=self.master)
         self.error_variable = StringVar(self.frame)
         self.error_label = ttk.Label(
@@ -74,13 +73,15 @@ class LoginView:
         login_button = ttk.Button(
             master=self.frame,
             text="Login",
-            command=self.login_manager
+            command=self.login_manager,
+            style="Custom.TButton"
         )
 
         create_user_button = ttk.Button(
             master=self.frame,
             text="Create new user",
-            command=self.manage_create_user_view
+            command=self.manage_create_user_view,
+            style="Custom.TButton"
         )
 
         self.frame.grid_columnconfigure(0, weight=1, minsize=400)
@@ -89,3 +90,14 @@ class LoginView:
         create_user_button.grid(padx=5, pady=5, sticky=constants.EW)
 
         self.hide_error()
+
+        
+        self.master.style = ttk.Style(self.master)
+        self.master.style.theme_use('clam')
+
+        self.master.style.configure('Custom.TButton', 
+                                    background='#FFC107', 
+                                    foreground='black',
+                                    padding=10, 
+                                    font=('Helvetica'))
+       
