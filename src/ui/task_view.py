@@ -133,31 +133,33 @@ class TaskView:
 
 
     def assign_footer(self):
-        self.create_todo_entry = ttk.Entry(master=self.frame)
+        input_frame = ttk.Frame(master=self.frame, padding=(0, 10))
+        input_frame.columnconfigure(0, weight=1)
+        input_frame.columnconfigure(1, weight=0)
+        input_frame.columnconfigure(2, weight=0)
+
+        input_label = ttk.Label(master=input_frame, text="New Task:")
+
+        self.create_todo_entry = ttk.Entry(master=input_frame, font=("TkDefaultFont", 12))
+        self.create_todo_entry.grid(row=0, column=0, padx=5, pady=5, sticky=constants.EW)
 
         create_todo_button = ttk.Button(
-            master=self.frame,
-            text="Create",
+            master=input_frame,
+            text="Add Task",
             command=self.handle_create_todo,
-            style="Custom.TButton"
+            style="Custom.TButton",
+            padding=10,
         )
+        create_todo_button.grid(row=0, column=1, padx=5, pady=5, sticky=constants.E)
 
-        
-        self.create_todo_entry.grid(
-            row=2,
-            column=0,
-            padx=5,
-            pady=5,
-            sticky=constants.EW
+        input_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
+        ttk.Separator(master=self.frame, orient="horizontal").grid(
+            row=2, column=0, columnspan=2, sticky="ew", pady=10
         )
+        input_frame.grid(row=3, column=0, padx=10, pady=10, sticky=constants.EW)
 
-        create_todo_button.grid(
-            row=2,
-            column=1,
-            padx=5,
-            pady=5,
-            sticky=constants.EW
-        )
+        self.create_todo_entry.focus_set()
+
 
 
     def assign(self):
