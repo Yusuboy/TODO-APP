@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants
-from service.todo_service import TodoApp, InvalidCredentialsError, UsernameExistsError, app_service
+from service.todo_service import TodoApp, CredentialsBeingIncorrect, UsernameTakenError, app_service
 
 class RegisterView:
     def __init__(self, master, manage_register, manage_login_view):
@@ -35,7 +35,7 @@ class RegisterView:
             app_service.create_user(username, password, signin=True)
             self.manage_register()
 
-        except UsernameExistsError:
+        except UsernameTakenError:
             self.show_error(f"Username {username} already exists")
 
     

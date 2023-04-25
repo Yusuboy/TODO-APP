@@ -5,11 +5,11 @@ from repositories.task_repository import TaskDatabase
 
 from database_connection import get_database_connection
 
-class InvalidCredentialsError(Exception):
+class CredentialsBeingIncorrect(Exception):
     pass
 
 
-class UsernameExistsError(Exception):
+class UsernameTakenError(Exception):
     pass
 
 class TodoApp:
@@ -22,7 +22,7 @@ class TodoApp:
     def create_user(self, username: str, password: str, signin: True):
         for i in self.users:
             if i.name == username:
-                raise UsernameExistsError(f"Username {username} already exists")
+                raise UsernameTakenError(f"Username {username} already exists")
 
         user = User(username, password)
         self.users.append(user)
@@ -48,7 +48,7 @@ class TodoApp:
             self.user = user
             return user
 
-        raise InvalidCredentialsError("Invalid username or password")
+        raise CredentialsBeingIncorrect("Invalid username or password")
 
 
 

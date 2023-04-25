@@ -22,14 +22,14 @@ class UI:
 
         self.current_outlook = LoginView(
             self.master,
-            self.show_todos_view,
-            self.show_create_user_view
+            self.display_tasks_view,
+            self.display_create_user_view
         )
 
         self.current_outlook.pack()
 
 
-    def show_todos_view(self):
+    def display_tasks_view(self):
         self.hide_current_outlook()
 
         self.current_outlook = TaskView(self.master, self.display_login_view)
@@ -38,12 +38,12 @@ class UI:
 
 
     
-    def show_create_user_view(self):
+    def display_create_user_view(self):
         self.hide_current_outlook()
 
         self.current_outlook = RegisterView(
             self.master,
-            self.show_todos_view,
+            self.display_tasks_view,
             self.display_login_view
         )
 

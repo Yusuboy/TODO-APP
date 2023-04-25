@@ -6,7 +6,7 @@ class Test_todo_service(unittest.TestCase):
         self.todo = TodoApp()
 
     def test_create_user(self):
-        user = self.todo.create_user("Yuusuf", "password")
+        user = self.todo.create_user("Yuusuf", "password", signin=True)
         self.assertEqual(user.name, "Yuusuf")
         self.assertEqual(user.password, "password")
         self.assertIn(user, self.todo.users)
@@ -16,7 +16,7 @@ class Test_todo_service(unittest.TestCase):
         name = "Yuusuf"
         password = "SQLlover"
         task_name = "Siivoa huone"
-        user = self.todo.create_user(name, password)
+        user = self.todo.create_user(name, password, signin=True)
 
         self.todo.add_task_to_user(name, task_name)
         self.assertIn(task_name, [task.name for task in user.task_list.tasks])
@@ -24,19 +24,19 @@ class Test_todo_service(unittest.TestCase):
     
     def test_get_users_tasks(self):
         
-        user = self.todo.create_user('Test User', 'password')
-        self.todo.add_task_to_user(user.name, 'Task 1')
+        user = self.todo.create_user('Yuusuf', 'password', signin=True)
+        self.todo.add_task_to_user(user.name, 'Heitä roskat')
         tasks = self.todo.get_users_tasks(user.name)
         self.assertNotEqual(tasks, None)
 
    
-        self.assertEqual(tasks[0].name, 'Task 1')
+        self.assertEqual(tasks[0].name, 'Heitä roskat')
 
     # ChatGpt apuna käyttäen
     def test_get_users_done_tasks(self):
         
-        user = self.todo.create_user("Yuusuf", "password")
-        self.todo.add_task_to_user("Yuusuf", "Task 1")
+        user = self.todo.create_user("Yuusuf", "password", signin=True)
+        self.todo.add_task_to_user("Yuusuf", "Heitä roskat")
         done_tasks = self.todo.get_users_done_tasks("Yuusuf")
         self.assertEqual(len(done_tasks), 0)
        
@@ -44,18 +44,18 @@ class Test_todo_service(unittest.TestCase):
 
     def test_get_users_undone_tasks(self):
     
-        user = self.todo.create_user("Yuusuf", "password")
-        self.todo.add_task_to_user("Yuusuf", "Task 1")
+        user = self.todo.create_user("Yuusuf", "password", signin=True)
+        self.todo.add_task_to_user("Yuusuf", "Heitä roskat")
         undone_tasks = self.todo.get_users_undone_tasks("Yuusuf")
         self.assertEqual(len(undone_tasks), 1)
-        self.assertEqual(undone_tasks[0], "Task 1")
+        self.assertEqual(undone_tasks[0], "Heitä roskat")
 
     # ChatGpt apuna käyttäen
     def test_remove_task_from_user_method(self):
         name = "Yuusuf"
         password = "SQLlover"
         task_name = "Siivoa huone"
-        user = self.todo.create_user(name, password)
+        user = self.todo.create_user(name, password, signin=True)
 
         self.todo.add_task_to_user(name, task_name)
         self.todo.remove_task_from_user(name, task_name)
@@ -67,7 +67,7 @@ class Test_todo_service(unittest.TestCase):
         name = "Yuusuf"
         password = "SQLlover"
         task_name = "Siivoa huone"
-        user = self.todo.create_user(name, password)
+        user = self.todo.create_user(name, password, signin=True)
         self.todo.add_task_to_user(name, task_name)
         
         self.assertEqual(user.task_list.tasks[0].completed, False)
@@ -75,7 +75,5 @@ class Test_todo_service(unittest.TestCase):
        
         self.todo.change_user_task_status(name, task_name)
         self.assertEqual(user.task_list.tasks[0].completed, True)
-        
-        
-        
 
+        
