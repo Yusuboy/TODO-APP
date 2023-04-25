@@ -9,7 +9,7 @@
 - [Vaatimuusmaaritttely](dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 ****
-## **[Release 1](https://github.com/Yusuboy/ot-harjoitustyo/archive/refs/tags/Viikko5.zip)**
+## **[Release 1](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko5)**
 ****
 ## **Asennus**
  **1. Asenna riippuvuudet komennolla:**
