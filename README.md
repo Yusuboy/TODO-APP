@@ -45,8 +45,6 @@ poetry run invoke test
 poetry run invoke coverage-report
 ```
 
-**Tämä komento avaa nettiselaimeen, jossa on testikattavuusraporriin**
-
 ### **Pylint**
 **Tiedoston .pylintrc määrittelemät tarkistukset voi suorittaa komennolla:**
 ```bash
