@@ -3,5 +3,5 @@ class Task:
         self.name = name
         self.completed = False
 
-    def set_completed(self):
-        self.completed = True
+    # def set_completed(self):
+    #     self.completed = True

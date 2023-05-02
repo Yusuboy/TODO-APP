@@ -1,6 +1,6 @@
 from tkinter import ttk, constants
 from service.todo_service import TodoApp,app_service
-
+import datetime
 class Users_tasklist_view:
     def __init__(self, master, tasks, manage_task_status):
 
@@ -81,6 +81,11 @@ class TaskView:
         self.frame.after(100, lambda: self.assign_todo_list(self.user.name))
 
 
+    def time_of_creation(self):
+        now = datetime.datetime.now()
+        return now.strftime("%Y-%m-%d %H:%M:%S")
+
+
         
     def assign_todo_list(self, name):
         if self.task_list_view:
@@ -108,7 +113,7 @@ class TaskView:
             master=self.frame,
             text="Logout",
             command=self.logout_manage,
-            style="Custom.TButton"
+            style="Custom2.TButton"
         )
 
         user_icon.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
@@ -127,9 +132,18 @@ class TaskView:
         todo_content = self.create_todo_entry.get()
 
         if todo_content:
-            app_service.add_task_to_user(self.user.name,todo_content)
-            self.assign_todo_list(self.user.name)
+            now = self.time_of_creation()
+            app_service.add_task_to_user(self.user.name,f"{todo_content} ({now})")
             self.create_todo_entry.delete(0, constants.END)
+            self.assign_todo_list(self.user.name)
+            success_label = ttk.Label(
+                master=self.frame,
+                text="Task created successfully!",
+                style="Success.TLabel"
+            )
+            success_label.grid(row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
+            self.frame.after(3000, success_label.destroy)
+
 
 
     def assign_footer(self):
@@ -187,3 +201,16 @@ class TaskView:
                                     foreground='black',
                                     padding=10, 
                                     font=('Helvetica'))
+
+        self.master.style.configure('Custom2.TButton', 
+                                    background='#FF5207', 
+                                    foreground='black',
+                                    padding=10, 
+                                    font=('Helvetica'))
+            
+    
+        self.master.style.configure('Success.TLabel',
+                            background='#4CAF50',
+                            foreground='white',
+                            padding=5,
+                            font=('Helvetica', 12, 'bold'))

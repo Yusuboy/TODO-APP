@@ -27,7 +27,10 @@ class UserDatabase:
     def find_by_username(self, name):
         cursor = self.connection.cursor()
         cursor.execute("Select * from Users where name = ?", (name,))
-        self.connection.commit()
+        users = cursor.fetchone()
+        return users
+        
+        
 
 
     def delete_task(self, name, task):
