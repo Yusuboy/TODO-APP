@@ -30,7 +30,6 @@ class TaskDatabase:
            "WHERE u.name = ?", (name,))
 
         tasks = cursor.fetchall()
-        
         return tasks
 
     def update_users_task(self, name, task):

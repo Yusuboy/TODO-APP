@@ -9,8 +9,10 @@ class User:
         task_list (TaskList): The user's list of tasks.
 
     Methods:
-        __init__(self, name: str, password: str): Initializes a new User instance with the given name and password.
-        create_task_list(self): Creates a new TaskList for the user.
+        __init__(self, name: str, password: str): 
+        Initializes a new User instance with the given name and password.
+        create_task_list(self): 
+            Creates a new TaskList for the user.
     """
 
     def __init__(self, name: str, password: str):

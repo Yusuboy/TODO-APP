@@ -14,25 +14,42 @@ class UsernameTakenError(Exception):
 
 class TodoApp:
 
-    """A class representing a todo app.
-
-    Attributes:
-        user (User): The current user.
-        user_db (UserDatabase): The database used to store user information.
-        task_db (TaskDatabase): The database used to store task information.
+    """
+    A class representing a to-do list application.
 
     Methods:
-        __init__(self): Initializes a new TodoApp instance.
-        create_user(self, username: str, password: str, signin: bool = True) -> User: Creates a new user with the given username and password.
-        signin(self, username: str, password: str) -> None: Signs in the user with the given username and password.
-        logout(self) -> None: Logs out the current user.
-        get_current_user(self) -> User: Gets the current user.
-        add_task_to_user(self, user_name: str, task: str) -> None: Adds a task to the user's task list.
-        get_users_tasks(self, user_name: str) -> List[str]: Gets the tasks of the user with the given username.
-        get_users_undone_tasks(self, name: str) -> List[str]: Gets the undone tasks of the user with the given username.
-        get_users_done_tasks(self, name: str) -> List[str]: Gets the done tasks of the user with the given username.
-        remove_task_from_user(self, user_name: str, task: str) -> None: Removes a task from the user's task list.
-        change_user_task_status(self, username: str, task: str) -> None: Changes the status of a task for the user with the given username.
+    __init__(self):
+        Initializes a new TodoApp instance.
+
+    create_user(self, username: str, password: str, signin: bool = True):
+        Creates a new user with the given username and password.
+
+    signin(self, username: str, password: str):
+        Signs in the user with the given username and password.
+
+    logout(self) :
+        Logs out the current user.
+
+    get_current_user(self):
+        Gets the current user.
+
+    add_task_to_user(self, user_name: str, task: str):
+        Adds a task to the user's task list.
+
+    get_users_tasks(self, user_name: str):
+        Gets the tasks of the user with the given username.
+
+    get_users_undone_tasks(self, name: str):
+        Gets the undone tasks of the user with the given username.
+
+    get_users_done_tasks(self, name: str):
+        Gets the done tasks of the user with the given username.
+
+    remove_task_from_user(self, user_name: str, task: str):
+        Removes a task from the user's task list.
+
+    change_user_task_status(self, username: str, task: str):
+        Changes the status of a task for the user with the given username.
     """
     def __init__(self):
         """Initializes a new TodoApp instance."""
@@ -54,8 +71,8 @@ class TodoApp:
         Raises:
             UsernameTakenError: If the given username already exists.
         """
-        if self.user_db.find_by_username(username):  
-                raise UsernameTakenError(f"Username {username} already exists")
+        if self.user_db.find_by_username(username):
+            raise UsernameTakenError(f"Username {username} already exists")
         user = User(username, password)
         self.user_db.create_user(user)
         if signin:
@@ -109,7 +126,6 @@ class TodoApp:
         user = self.user_db.find_by_username(user_name)
         if user:
             self.task_db.add_task(task, user_name)
-    
 
     def get_users_tasks(self, user_name: str):
         """
@@ -137,7 +153,8 @@ class TodoApp:
             name (str): The username of the user whose undone tasks are to be returned.
 
         Returns:
-            [List[str]]: A list of undone tasks for the specified user or None if the user does not exist.
+            [List[str]]: 
+                A list of undone tasks for the specified user or None if the user does not exist.
 
         """
         user = self.user_db.find_by_username(name)
@@ -153,7 +170,8 @@ class TodoApp:
             name (str): The name of the user.
 
         Returns:
-            [List[str]]: A List of done tasks for the specified user or None if the user does not exist.
+            [List[str]]: 
+                A List of done tasks for the specified user or None if the user does not exist.
         """
         user = self.user_db.find_by_username(name)
         if user:

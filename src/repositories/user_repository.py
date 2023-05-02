@@ -67,14 +67,13 @@ class UserDatabase:
             name (str): The username of the user to be found.
 
         Returns:
-            Union[User, None]: The user that matches the given username, or None if no such user exists.
+            Union[User, None]: 
+            The user that matches the given username, or None if no such user exists.
         """
         cursor = self.connection.cursor()
         cursor.execute("Select * from Users where name = ?", (name,))
         users = cursor.fetchone()
         return users
-        
-        
 
     def delete_everything(self):
         """

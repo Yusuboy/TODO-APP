@@ -17,3 +17,4 @@ class Task:
         """
         self.name = name
         self.completed = False
+        
