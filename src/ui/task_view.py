@@ -83,7 +83,7 @@ class TaskView:
 
     def time_of_creation(self):
         now = datetime.datetime.now()
-        return now.strftime("%Y-%m-%d %H:%M:%S")
+        return now.strftime("%m-%d %H:%M")
 
 
         
@@ -133,7 +133,7 @@ class TaskView:
 
         if todo_content:
             now = self.time_of_creation()
-            app_service.add_task_to_user(self.user.name,f"{todo_content} ({now})")
+            app_service.add_task_to_user(self.user.name,f"{todo_content} {now}")
             self.create_todo_entry.delete(0, constants.END)
             self.assign_todo_list(self.user.name)
             success_label = ttk.Label(

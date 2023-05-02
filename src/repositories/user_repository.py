@@ -3,10 +3,39 @@ from entities.user import User
 
 
 class UserDatabase:
+    """
+    A class that manages user information in a SQLite database.
+
+    Attributes:
+        connection: The connection to the database.
+
+    Methods:
+        create_user(user: User): Inserts a new user record into the database.
+        find_all(): Returns a list of all users in the database.
+        find_by_username(name: str): Finds a user in the database by their username.
+        delete_everything(): Deletes all user records from the database.
+
+    """
     def __init__(self, connection):
+        """
+        Initializes a new instance of the UserDatabase class.
+
+        Args:
+            connection: The connection to the database.
+        """
         self.connection = connection
 
     def create_user(self, user):
+
+        """
+        Inserts a new user record into the database.
+
+        Args:
+            user (User): The user to be inserted into the database.
+
+        Returns:
+            User: The user that was inserted into the database.
+        """
         cursor = self.connection.cursor()
         cursor.execute("INSERT INTO Users (name, password) VALUES (?, ?)",
         (user.name, user.password))
@@ -14,6 +43,12 @@ class UserDatabase:
         return user
 
     def find_all(self):
+        """
+        Returns a list of all users in the database.
+
+        Returns:
+            List[User]: A list of all users in the database.
+        """
         cursor = self.connection.cursor()
         cursor.execute("Select * from User")
         rows = cursor.fetchall()
@@ -25,6 +60,15 @@ class UserDatabase:
         return users
 
     def find_by_username(self, name):
+        """
+        Finds a user in the database by their username.
+
+        Args:
+            name (str): The username of the user to be found.
+
+        Returns:
+            Union[User, None]: The user that matches the given username, or None if no such user exists.
+        """
         cursor = self.connection.cursor()
         cursor.execute("Select * from Users where name = ?", (name,))
         users = cursor.fetchone()
@@ -32,66 +76,10 @@ class UserDatabase:
         
         
 
-
-    def delete_task(self, name, task):
-        cursor = self.connection.cursor()
-        cursor.execute("DELETE FROM Tasks WHERE user_id = "
-           "(SELECT id FROM Users WHERE name = ?) "
-           "AND task = ?;", (name, task))
-        self.connection.commit()
-
-    def get_tasks_of_user(self, name):
-        cursor = self.connection.cursor()
-        cursor.execute("SELECT t.task, t.completed "
-           "FROM Users u "
-           "JOIN Tasks t ON u.id = t.user_id "
-           "WHERE u.name = ?", (name,))
-
-        tasks = cursor.fetchall()
-        self.connection.commit()
-        return tasks
-
-    def update_users_task(self, name, task):
-        cursor = self.connection.cursor()
-        cursor.execute(
-    "UPDATE Tasks SET completed = 1 "
-    "WHERE user_id = (SELECT id FROM Users WHERE name = ?) AND task = ?",
-    (name, task)
-)
-        self.connection.commit()
-
-    def get_done_tasks(self, name):
-        cursor = self.connection.cursor()
-        cursor.execute("""
-    SELECT task 
-    FROM Tasks 
-    WHERE user_id = (
-        SELECT id 
-        FROM Users 
-        WHERE name = ?) 
-    AND completed = ?
-    """, (name, True))
-        tasks = [task[0] for task in cursor.fetchall()]
-        self.connection.commit()
-        return tasks
-
-    def get_undone_tasks(self, name):
-        cursor = self.connection.cursor()
-        cursor.execute("""
-    SELECT task
-    FROM Tasks
-    WHERE user_id = (
-        SELECT id
-        FROM Users
-        WHERE name = ?
-    )
-    AND completed = ?
-""", (name, False))
-        tasks = [task[0] for task in cursor.fetchall()]
-        self.connection.commit()
-        return tasks
-
     def delete_everything(self):
+        """
+        Deletes all user information from the database.
+        """
         cursor = self.connection.cursor()
         cursor.execute("DELETE FROM Users")
         self.connection.commit()
