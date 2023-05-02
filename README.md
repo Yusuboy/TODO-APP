@@ -8,6 +8,7 @@
 - [Changelog](dokumentaatio/changelog.md)
 - [Vaatimuusmaaritttely](dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
+- [Käyttöohje](dokumentaatio/käyttöohje.md)
 ****
 ## **[Release 1](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko5)**
 ****
