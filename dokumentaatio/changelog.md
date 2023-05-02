@@ -26,3 +26,12 @@
 - Käyttäjä voi kirjautua takaisin sovellukseen,jolloin käyttäjän tekemättömät todo palaavat.
 - Tehtiin lisää testejä ja paranneltiin vanohja.
 - Seuraavaksi olisi tavoitteena, että voitaisiin prioridoida tehtävät ja myös nähädä milloin uussi tehtävä lisättiin listaan.
+
+## Viikko 6
+- Tehtiin uusia testejä
+- Lisättiin todoappiin uusia toimintoja.
+- Voidaan nähdä aika, milloin todo lisättiin
+- Meille tulee ilmoitus, kun uusi todo on lisätty
+- Korjattiin bugeja.
+- Muokattiin service luokkia. jolloin saatiin bugi korjattua
+- Alettiin suunnittelemaan miten voidaan priorisoida taskit

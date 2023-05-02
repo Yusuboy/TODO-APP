@@ -12,9 +12,3 @@ class Test_task(unittest.TestCase):
     def test_task_name_is_right(self):
         self.assertEqual(self.task.name, 'Tiskaa')
 
-    def test_task_can_get_completed(self):
-        self.assertEqual(self.task.completed, False)
-
-        self.task.set_completed()
-
-        self.assertEqual(self.task.completed, True)

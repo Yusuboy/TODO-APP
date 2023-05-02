@@ -14,4 +14,7 @@
 | 23.4  | 7    | Alettiin konstruktoimaan ui luokat ja saatiin ne aloitusnäyttö hyvään malliin
 | 24.4  | 6    | Työskentelin lisää ui luokkien kanssa
 | 25.4  | 5    | Työskentelin ui luokkien kanssa. 
-| yht   | 64   |  
+| 28.4  | 3    | Työskentelin lisää ui luokkien kanssa. 
+| 1.5   | 2    | Yritin korjata bugia 
+| 2.5   | 3     | Muokkasi service luokkaa
+| yht   | 72   |  

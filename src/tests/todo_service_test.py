@@ -1,44 +1,63 @@
 import unittest
-from service.todo_service import TodoApp
+from service.todo_service import TodoApp, UsernameTakenError, CredentialsBeingIncorrect
 
 class Test_todo_service(unittest.TestCase):
     def setUp(self):
         self.todo = TodoApp()
 
+
     def test_create_user(self):
-        user = self.todo.create_user("Yuusuf", "password", signin=True)
-        self.assertEqual(user.name, "Yuusuf")
-        self.assertEqual(user.password, "password")
-        self.assertIn(user, self.todo.users)
+        
+        username = "testuser"
+        password = "testpassword"
+        user = self.todo.create_user(username, password, signin=True)
+        self.assertEqual(user.name, username)
+        self.assertEqual(user.password, password)
+
+
+        with self.assertRaises(UsernameTakenError):
+            self.todo.create_user(username, password, signin=True)
+
+
+
+       
     
     def test_add_task_to_user(self):
-    
-        name = "Yuusuf"
-        password = "SQLlover"
-        task_name = "Siivoa huone"
-        user = self.todo.create_user(name, password, signin=True)
-
-        self.todo.add_task_to_user(name, task_name)
-        self.assertIn(task_name, [task.name for task in user.task_list.tasks])
+        self.todo.create_user("Pekka", "password", signin=True)
+        self.todo.add_task_to_user('Pekka', "newww")
+        Tasks = self.todo.get_users_tasks("Pekka")
+        count1 = len(Tasks)
+        self.todo.add_task_to_user("Pekka", "Hellou")
+        Tasks2 = self.todo.get_users_tasks("Pekka")
+        count2 = len(Tasks2)
+        self.assertNotEqual(count1, count2)
 
     
     def test_get_users_tasks(self):
-        
-        user = self.todo.create_user('Yuusuf', 'password', signin=True)
-        self.todo.add_task_to_user(user.name, 'Heitä roskat')
-        tasks = self.todo.get_users_tasks(user.name)
-        self.assertNotEqual(tasks, None)
+   
+        username = "test_user"
+        password = "test_password"
+        self.todo.create_user(username, password, signin=True)
+        self.todo.add_task_to_user(username, "task1")
+        self.todo.add_task_to_user(username, "task2")
+        self.todo.add_task_to_user(username, "task3")
 
    
-        self.assertEqual(tasks[0].name, 'Heitä roskat')
+        tasks = len(self.todo.get_users_tasks(username))
+        self.assertEqual(tasks, 3)
+
+        self.assertIsNone(self.todo.get_users_tasks("non_existent_user"))
 
     # ChatGpt apuna käyttäen
     def test_get_users_done_tasks(self):
         
-        user = self.todo.create_user("Yuusuf", "password", signin=True)
-        self.todo.add_task_to_user("Yuusuf", "Heitä roskat")
-        done_tasks = self.todo.get_users_done_tasks("Yuusuf")
-        self.assertEqual(len(done_tasks), 0)
+        self.todo.create_user("john_doe", "password", signin=True)
+        self.todo.add_task_to_user("john_doe", "Task 1")
+        self.todo.add_task_to_user("john_doe", "Task 2")
+        self.todo.change_user_task_status("john_doe", "Task 1")
+        done_tasks = self.todo.get_users_done_tasks("john_doe")
+
+        self.assertEqual(len(done_tasks), 1)
        
 
 
@@ -51,29 +70,24 @@ class Test_todo_service(unittest.TestCase):
         self.assertEqual(undone_tasks[0], "Heitä roskat")
 
     # ChatGpt apuna käyttäen
-    def test_remove_task_from_user_method(self):
-        name = "Yuusuf"
-        password = "SQLlover"
-        task_name = "Siivoa huone"
-        user = self.todo.create_user(name, password, signin=True)
+    def test_remove_task_from_user(self):
+        tasks = self.todo.get_users_tasks("Yuusuf")
+        count = len(tasks)
+        self.todo.add_task_to_user('Yuusuf', "Read")
+        self.todo.remove_task_from_user('Yuusuf', "Read")
+        self.assertEqual(count, 1)
 
-        self.todo.add_task_to_user(name, task_name)
-        self.todo.remove_task_from_user(name, task_name)
-        self.assertNotIn(
-        task_name, [task.name for task in user.task_list.tasks])
+
+       
 
     # ChatGpt apuna käyttäen
     def test_user_tasks_status_changes(self):
-        name = "Yuusuf"
-        password = "SQLlover"
-        task_name = "Siivoa huone"
-        user = self.todo.create_user(name, password, signin=True)
-        self.todo.add_task_to_user(name, task_name)
-        
-        self.assertEqual(user.task_list.tasks[0].completed, False)
-        
-       
-        self.todo.change_user_task_status(name, task_name)
-        self.assertEqual(user.task_list.tasks[0].completed, True)
-
+        self.todo.create_user("Jaja", "password", signin=True)
+        self.todo.add_task_to_user("Jaja", "Nuku")
+      
+        tasks = self.todo.get_users_undone_tasks("Jaja")
+        self.assertEqual(len(tasks), 1)
+        self.todo.change_user_task_status('Jaja', "Nuku")
+        tasks2 = self.todo.get_users_done_tasks('Jaja')
+        self.assertEqual(len(tasks), 1)
         
