@@ -35,3 +35,4 @@
 - Korjattiin bugeja.
 - Muokattiin service luokkia. jolloin saatiin bugi korjattua
 - Alettiin suunnittelemaan miten voidaan priorisoida taskit
+- Seuraavaksi olisi tavoitteena, että voitaisiin prioridoida tehtävät

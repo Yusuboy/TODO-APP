@@ -19,4 +19,4 @@
 ## Jatkokehitysideoita
 - Todot voidaan priorisoida
 - Mahdollisuus useaan eri todo-listaan
-- Nähdään päivämäärä, jona todo lisättiin
+- Nähdään päivämäärä, jona todo lisättiin Tehty

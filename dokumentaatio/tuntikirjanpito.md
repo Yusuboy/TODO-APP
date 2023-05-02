@@ -17,4 +17,4 @@
 | 28.4  | 3    | Työskentelin lisää ui luokkien kanssa. 
 | 1.5   | 2    | Yritin korjata bugia 
 | 2.5   | 3     | Muokkasi service luokkaa
-| yht   | 72   |  
+| yht   | 70   |  
