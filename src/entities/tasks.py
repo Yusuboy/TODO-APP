@@ -9,7 +9,7 @@ class Task:
         __init__(self, name: str): Initializes a new Task instance with the given name.
     """
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, priority: str):
         """Initializes a new Task instance with the given name.
 
         Args:
@@ -17,4 +17,6 @@ class Task:
         """
         self.name = name
         self.completed = False
+        
+        
         

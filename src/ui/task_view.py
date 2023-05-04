@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, StringVar
 from service.todo_service import TodoApp,app_service
 import datetime
 class Users_tasklist_view:
@@ -157,6 +157,26 @@ class TaskView:
         self.create_todo_entry = ttk.Entry(master=input_frame, font=("TkDefaultFont", 12))
         self.create_todo_entry.grid(row=0, column=0, padx=5, pady=5, sticky=constants.EW)
 
+
+  
+        options = ['Low','Medium',"High"]
+
+        select_var_priority = StringVar(master=self.frame)
+        select_priority = "Select priority"
+        priority_option = ttk.OptionMenu(
+            input_frame,
+            select_var_priority,
+            select_priority,
+            *options
+        )
+        priority_option.grid(
+            row=0,
+            column=1,
+            padx=5,
+            pady=5,
+            sticky=constants.E
+        )
+
         create_todo_button = ttk.Button(
             master=input_frame,
             text="Add Task",
@@ -164,7 +184,7 @@ class TaskView:
             style="Custom.TButton",
             padding=10,
         )
-        create_todo_button.grid(row=0, column=1, padx=5, pady=5, sticky=constants.E)
+        create_todo_button.grid(row=0, column=2, padx=5, pady=5, sticky=constants.E)
 
         input_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
         ttk.Separator(master=self.frame, orient="horizontal").grid(
