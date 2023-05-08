@@ -61,6 +61,10 @@ class RegisterView:
         password_label.grid(padx=5, pady=5, sticky=constants.W)
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
+    def backToLog(self):
+        app_service.logout()
+        self.manage_login_view()
+
 
     def assign(self):
         self.frame = ttk.Frame(master=self.master)
@@ -82,11 +86,20 @@ class RegisterView:
             style="Custom.TButton"
         )
 
+        back_button = ttk.Button(
+
+            master=self.frame,
+            text="Back",
+            command=self.backToLog,
+            style="Custom.TButton"
+        )
+
         
 
         self.frame.grid_columnconfigure(0, weight=1, minsize=400)
 
         register_user_button.grid(padx=5, pady=5, sticky=constants.EW)
+        back_button.grid(padx=1, pady=1, sticky=constants.EW)
        
 
         self.hide_error()
