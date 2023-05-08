@@ -15,8 +15,10 @@ def create_tables(collect):
                    "(id INTEGER PRIMARY KEY, "
                    "user_id INTEGER REFERENCES Users, "
                    "task TEXT, "
-                   "completed TEXT NOT NULL"
-                   "priority ENUM ('Low', 'Medium', 'High') DEFAULT 'Low'");
+                   "completed TEXT NOT NULL);")
+
+
+
     collect.commit()
 
 def initialize_database():

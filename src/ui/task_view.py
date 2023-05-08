@@ -160,14 +160,14 @@ class TaskView:
 
   
         options = ['Low','Medium',"High"]
-
         select_var_priority = StringVar(master=self.frame)
         select_priority = "Select priority"
         priority_option = ttk.OptionMenu(
             input_frame,
             select_var_priority,
             select_priority,
-            *options
+            *options,
+            style = "Custom.TButton"
         )
         priority_option.grid(
             row=0,
