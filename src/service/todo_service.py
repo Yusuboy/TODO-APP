@@ -189,6 +189,17 @@ class TodoApp:
         if user:
             self.task_db.delete_task(user_name, task)
 
+    
+    def change_task_priority(self, username: str, task: str, priority: str):
+        if priority not in ('low', 'medium', 'high'):
+            raise ValueError(f"Invalid priority '{priority}'. Allowed values are 'low', 'medium', and 'high'.")
+        user = self.user_db.find_by_username(username)
+        if user:
+            self.task_db.update_users_task_priority(username, task, priority)
+            return user
+        else:
+            return None
+
 
     def change_user_task_status(self, username: str, task: str):
         """Change the status of a task for a user.

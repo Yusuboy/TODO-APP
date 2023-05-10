@@ -90,4 +90,21 @@ class Test_todo_service(unittest.TestCase):
         self.todo.change_user_task_status('Jaja', "Nuku")
         tasks2 = self.todo.get_users_done_tasks('Jaja')
         self.assertEqual(len(tasks), 1)
+            
+    def test_change_task_priority(self):
+  
+        self.todo.create_user("maca", "test_password", signin=True)
+        self.todo.add_task_to_user("maca", "task1")
+
+     
+        self.todo.change_task_priority("maca", "task1", "high")
+
+        tasks = self.todo.get_users_tasks("maca")
         
+        for task in tasks:
+            print(task)
+            if task[0] == "task1":
+                self.assertEqual(task[1], "high")
+                break
+        else:
+            self.fail("Task not found")

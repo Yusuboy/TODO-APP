@@ -15,8 +15,8 @@ def create_tables(collect):
                    "(id INTEGER PRIMARY KEY, "
                    "user_id INTEGER REFERENCES Users, "
                    "task TEXT, "
+                   "priority TEXT NOT NULL DEFAULT 'low', "
                    "completed TEXT NOT NULL);")
-
 
 
     collect.commit()
