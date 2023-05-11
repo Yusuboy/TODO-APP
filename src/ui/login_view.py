@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants
-from service.todo_service import TodoApp, CredentialsBeingIncorrect, UsernameTakenError, app_service
+from service.user_service import UserService, CredentialsBeingIncorrect, UsernameTakenError, user_service
 
 class LoginView:
     def __init__(self, master, manage_login, manage_create_user_view):
@@ -27,7 +27,7 @@ class LoginView:
         password = self.matchword_entry.get()
     
         try:
-            app_service.signin(username, password)
+            user_service.signin(username, password)
             self.manage_login()
 
         except CredentialsBeingIncorrect:

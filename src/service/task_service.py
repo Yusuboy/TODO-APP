@@ -1,37 +1,17 @@
-
-from entities.user import User
-from repositories.user_repository import UserDatabase
 from repositories.task_repository import TaskDatabase
-
 from database_connection import get_database_connection
-
-class CredentialsBeingIncorrect(Exception):
-    pass
+from repositories.user_repository import UserDatabase
 
 
-class UsernameTakenError(Exception):
-    pass
 
-class TodoApp:
 
+class TodoService:
     """
-    A class representing a to-do list application.
-
+    A class representing a todo application (user).
+    
     Methods:
     __init__(self):
-        Initializes a new TodoApp instance.
-
-    create_user(self, username: str, password: str, signin: bool = True):
-        Creates a new user with the given username and password.
-
-    signin(self, username: str, password: str):
-        Signs in the user with the given username and password.
-
-    logout(self) :
-        Logs out the current user.
-
-    get_current_user(self):
-        Gets the current user.
+        Initializes a new TodoService instance.
 
     add_task_to_user(self, user_name: str, task: str):
         Adds a task to the user's task list.
@@ -52,69 +32,11 @@ class TodoApp:
         Changes the status of a task for the user with the given username.
     """
     def __init__(self):
-        """Initializes a new TodoApp instance."""
+        """Initializes a new TodoService instance."""
         self.user = None
-        self.user_db = UserDatabase(get_database_connection())
         self.task_db = TaskDatabase(get_database_connection())
-
-    def create_user(self, username: str, password: str, signin: True):
-        """Creates a new user with the given username and password.
-
-        Args:
-            username (str): The username for the new user.
-            password (str): The password for the new user.
-            signin (bool, optional): Whether to sign in the new user. Defaults to True.
-
-        Returns:
-            User: The newly created user.
+        self.user_db = UserDatabase(get_database_connection())
         
-        Raises:
-            UsernameTakenError: If the given username already exists.
-        """
-        if self.user_db.find_by_username(username):
-            raise UsernameTakenError(f"Username {username} already exists")
-        user = User(username, password)
-        self.user_db.create_user(user)
-        if signin:
-            self.user = user
-
-        return user
-
-
-
-    def signin(self, username, password):
-        """Signs in the user with the given username and password.
-
-        Args:
-            username (str): The username of the user to sign in.
-            password (str): The password of the user to sign in.
-        
-        Raises:
-            CredentialsBeingIncorrect: If the given username or password is incorrect.
-        """
-        user = self.user_db.find_by_username(username)
-        if user and user[2] == password:
-            self.user = User(user[1], user[2])
-            return user
-
-        raise CredentialsBeingIncorrect("Invalid username or password")
-
-
-
-    def logout(self):
-        """Logs out the current user."""
-        self.user = None
-
-    def get_current_user(self):
-        """Get the currently logged in user.
-
-        Returns:
-        User: The currently logged in user.
-
-        """
-        return self.user
-
-
     def add_task_to_user(self, user_name: str, task: str):
         """Add a task to a user's task list.
 
@@ -189,7 +111,7 @@ class TodoApp:
         if user:
             self.task_db.delete_task(user_name, task)
 
-    
+
     def change_task_priority(self, username: str, task: str, priority: str):
         if priority not in ('low', 'medium', 'high'):
             raise ValueError(f"Invalid priority '{priority}'. Allowed values are 'low', 'medium', and 'high'.")
@@ -197,8 +119,7 @@ class TodoApp:
         if user:
             self.task_db.update_users_task_priority(username, task, priority)
             return user
-        else:
-            return None
+       
 
 
     def change_user_task_status(self, username: str, task: str):
@@ -216,4 +137,4 @@ class TodoApp:
             self.task_db.update_users_task(username, task)
 
 
-app_service = TodoApp()
+todo_service = TodoService()

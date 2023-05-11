@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants
-from service.todo_service import TodoApp, CredentialsBeingIncorrect, UsernameTakenError, app_service
+from service.user_service import UserService, CredentialsBeingIncorrect, UsernameTakenError, user_service
 
 class RegisterView:
     def __init__(self, master, manage_register, manage_login_view):
@@ -32,7 +32,7 @@ class RegisterView:
             return
     
         try:
-            app_service.create_user(username, password, signin=True)
+            user_service.create_user(username, password, signin=True)
             self.manage_register()
 
         except UsernameTakenError:
@@ -62,7 +62,7 @@ class RegisterView:
         self.matchword_entry.grid(padx=5, pady=5, sticky=constants.EW)
 
     def backToLog(self):
-        app_service.logout()
+        user_service.logout()
         self.manage_login_view()
 
 

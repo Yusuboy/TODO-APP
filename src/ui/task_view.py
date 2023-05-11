@@ -1,5 +1,6 @@
 from tkinter import ttk, constants, StringVar
-from service.todo_service import TodoApp,app_service
+from service.user_service import UserService, user_service
+from service.task_service import TodoService, todo_service
 import datetime
 class Users_tasklist_view:
     def __init__(self, master, tasks, manage_task_status):
@@ -8,6 +9,8 @@ class Users_tasklist_view:
         self.tasks = tasks
         self.manage_task_status = manage_task_status
         self.frame = None
+        
+        
 
         self.assign()
 
@@ -58,13 +61,15 @@ class TaskView:
     def __init__(self, master, handle_logout):
         self.master = master
         self.handle_logout = handle_logout
-        self.user = app_service.get_current_user()
+        self.user = user_service.get_current_user()
+        self.frame = ttk.Frame(master=self.master, padding=10)
+        self.select_var_priority = StringVar(master=self.frame)
         self.frame = None
         self.create_todo_entry = None
         self.todo_list_frame = None
         self.task_list_view = None
         self.assign()        
-
+        
         
     def pack(self):
         self.frame.pack(fill=constants.X)
@@ -73,11 +78,11 @@ class TaskView:
         self.frame.destroy()
 
     def logout_manage(self):
-        app_service.logout()
+        user_service.logout()
         self.handle_logout()
 
     def manage_task_status(self, task):
-        app_service.change_user_task_status(self.user.name, task)
+        todo_service.change_user_task_status(self.user.name, task)
         self.frame.after(100, lambda: self.assign_todo_list(self.user.name))
 
 
@@ -91,7 +96,7 @@ class TaskView:
         if self.task_list_view:
             self.task_list_view.dismantle()
             
-        tasks = app_service.get_users_undone_tasks(name)
+        tasks = todo_service.get_users_undone_tasks(name)
 
         self.task_list_view = Users_tasklist_view(
             self.todo_list_frame,
@@ -130,13 +135,20 @@ class TaskView:
     #  [Low] Go to sleep 5-11-2020
     def handle_create_todo(self):
         todo_content = self.create_todo_entry.get()
+        todo_prio =  self.select_var_priority.get()
         
+
         if todo_content:
             now = self.time_of_creation()
-            app_service.add_task_to_user(self.user.name,f"{todo_content} {now}")
-            app_service.change_task_priority(self.user.name, todo_content, 'medium')
+            if todo_prio == 'Select priority':
+                todo_prio == 'low'
+            todo_service.change_task_priority(self.user.name, todo_content, todo_prio)  
+            todo_service.add_task_to_user(self.user.name,f"{[todo_prio]} {todo_content} {now}")
+            print(todo_prio)
             self.create_todo_entry.delete(0, constants.END)
             self.assign_todo_list(self.user.name)
+           
+
             success_label = ttk.Label(
                 master=self.frame,
                 text="Task created successfully!",
@@ -144,6 +156,7 @@ class TaskView:
             )
             success_label.grid(row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
             self.frame.after(3000, success_label.destroy)
+
 
 
 
@@ -160,15 +173,17 @@ class TaskView:
 
        
   
-        options = ['Low','Medium',"High"]
-        select_var_priority = StringVar(master=self.frame)
+        options = ['low','medium',"high"]
         select_priority = "Select priority"
         priority_option = ttk.OptionMenu(
             input_frame,
-            select_var_priority,
+            self.select_var_priority,
             select_priority,
             *options,
             style = "Custom.TButton"
+
+        
+        
         )
         priority_option.grid(
             row=0,
