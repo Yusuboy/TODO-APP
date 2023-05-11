@@ -29,6 +29,9 @@ class Test_todo_service(unittest.TestCase):
         Tasks2 = self.todo.get_users_tasks("Pekka")
         count2 = len(Tasks2)
         self.assertNotEqual(count1, count2)
+        self.assertIsNone(self.todo.add_task_to_user("Pekka2", 'task'))
+
+      
 
     
     def test_get_users_tasks(self):

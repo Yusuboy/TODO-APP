@@ -11,7 +11,7 @@ class UserDatabase:
 
     Methods:
         create_user(user: User): Inserts a new user record into the database.
-        find_all(): Returns a list of all users in the database.
+      
         find_by_username(name: str): Finds a user in the database by their username.
         delete_everything(): Deletes all user records from the database.
 
@@ -42,22 +42,7 @@ class UserDatabase:
         self.connection.commit()
         return user
 
-    def find_all(self):
-        """
-        Returns a list of all users in the database.
 
-        Returns:
-            List[User]: A list of all users in the database.
-        """
-        cursor = self.connection.cursor()
-        cursor.execute("Select * from User")
-        rows = cursor.fetchall()
-        users = []
-        for row in rows:
-            user = User(*row)
-            users.append(user)
-        self.connection.commit()
-        return users
 
     def find_by_username(self, name):
         """
@@ -75,13 +60,6 @@ class UserDatabase:
         users = cursor.fetchone()
         return users
 
-    def delete_everything(self):
-        """
-        Deletes all user information from the database.
-        """
-        cursor = self.connection.cursor()
-        cursor.execute("DELETE FROM Users")
-        self.connection.commit()
 
 
 user_repository = UserDatabase(get_database_connection())

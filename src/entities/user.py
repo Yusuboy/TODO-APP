@@ -26,6 +26,4 @@ class User:
         self.password = password
         self.task_list = None
 
-    def create_task_list(self):
-        """Creates a new TaskList for the user."""
-        self.task_list = TaskList()
+    

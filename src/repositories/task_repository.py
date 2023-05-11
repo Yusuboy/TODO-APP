@@ -9,11 +9,10 @@ class TaskDatabase:
     def add_task(self, task_name, user_name):
         cursor = self.connection.cursor()
         user_id = cursor.execute("SELECT id FROM Users WHERE name = ?", (user_name,)).fetchone()
-        if user_id:
-            user_id = user_id[0]
-            cursor.execute("INSERT INTO Tasks (user_id, task, completed) VALUES (?, ?, ?)",
-           (user_id, task_name, False))
-            self.connection.commit()
+        user_id = user_id[0]
+        cursor.execute("INSERT INTO Tasks (user_id, task, completed) VALUES (?, ?, ?)",
+        (user_id, task_name, False))
+        self.connection.commit()
 
     def delete_task(self, name, task):
         cursor = self.connection.cursor()
