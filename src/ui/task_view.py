@@ -127,13 +127,14 @@ class TaskView:
    
         )
 
-
+    #  [Low] Go to sleep 5-11-2020
     def handle_create_todo(self):
         todo_content = self.create_todo_entry.get()
-
+        
         if todo_content:
             now = self.time_of_creation()
             app_service.add_task_to_user(self.user.name,f"{todo_content} {now}")
+            app_service.change_task_priority(self.user.name, todo_content, 'medium')
             self.create_todo_entry.delete(0, constants.END)
             self.assign_todo_list(self.user.name)
             success_label = ttk.Label(
@@ -157,7 +158,7 @@ class TaskView:
         self.create_todo_entry = ttk.Entry(master=input_frame, font=("TkDefaultFont", 12))
         self.create_todo_entry.grid(row=0, column=0, padx=5, pady=5, sticky=constants.EW)
 
-
+       
   
         options = ['Low','Medium',"High"]
         select_var_priority = StringVar(master=self.frame)
