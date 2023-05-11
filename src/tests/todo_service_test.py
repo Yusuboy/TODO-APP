@@ -18,8 +18,6 @@ class Test_todo_service(unittest.TestCase):
         with self.assertRaises(UsernameTakenError):
             self.todo.create_user(username, password, signin=True)
 
-
-
        
     
     def test_add_task_to_user(self):
@@ -92,19 +90,15 @@ class Test_todo_service(unittest.TestCase):
         self.assertEqual(len(tasks), 1)
             
     def test_change_task_priority(self):
-  
         self.todo.create_user("maca", "test_password", signin=True)
         self.todo.add_task_to_user("maca", "task1")
-
-     
         self.todo.change_task_priority("maca", "task1", "high")
-
         tasks = self.todo.get_users_tasks("maca")
-        
+
         for task in tasks:
             print(task)
             if task[0] == "task1":
-                self.assertEqual(task[1], "high")
+                self.assertEqual(task[2], "high")
                 break
         else:
             self.fail("Task not found")

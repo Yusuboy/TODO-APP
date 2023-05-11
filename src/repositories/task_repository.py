@@ -24,7 +24,7 @@ class TaskDatabase:
 
     def get_tasks_of_user(self, name):
         cursor = self.connection.cursor()
-        cursor.execute("SELECT t.task, t.completed "
+        cursor.execute("SELECT t.task, t.completed, t.priority "
            "FROM Users u "
            "JOIN Tasks t ON u.id = t.user_id "
            "WHERE u.name = ?", (name,))
