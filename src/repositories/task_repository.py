@@ -6,12 +6,15 @@ class TaskDatabase:
     def __init__(self, connection):
         self.connection = connection
 
-    def add_task(self, task_name, user_name):
+    def add_task(self, task_object: object, user_name: str):
         cursor = self.connection.cursor()
         user_id = cursor.execute("SELECT id FROM Users WHERE name = ?", (user_name,)).fetchone()
         user_id = user_id[0]
-        cursor.execute("INSERT INTO Tasks (user_id, task, completed) VALUES (?, ?, ?)",
-        (user_id, task_name, False))
+        task = task_object.name
+        priority = task_object.priority
+
+        cursor.execute("INSERT INTO Tasks (user_id, task, priority, completed) VALUES (?, ?, ?, ?)",
+        (user_id, task, priority, False))
         self.connection.commit()
 
     def delete_task(self, name, task):
@@ -41,9 +44,9 @@ class TaskDatabase:
         self.connection.commit()
 
 
-
     def update_users_task_priority(self, name, task, priority):
         cursor = self.connection.cursor()
+        
         cursor.execute(
     "UPDATE Tasks SET priority = ? "
     "WHERE user_id = (SELECT id FROM Users WHERE name = ?) AND task = ?",

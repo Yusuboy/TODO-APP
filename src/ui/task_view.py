@@ -1,3 +1,4 @@
+from entities.tasks import Task
 from tkinter import ttk, constants, StringVar
 from service.user_service import UserService, user_service
 from service.task_service import TodoService, todo_service
@@ -25,7 +26,7 @@ class Users_tasklist_view:
 
     def assign_task_status(self, task):
         item_frame = ttk.Frame(master=self.frame)
-        update_label = ttk.Label(master=item_frame, text=str(task))
+        update_label = ttk.Label(master=item_frame, text=task)
 
         update_task_button = ttk.Button(
             master=item_frame,
@@ -88,7 +89,7 @@ class TaskView:
 
     def time_of_creation(self):
         now = datetime.datetime.now()
-        return now.strftime("%m-%d %H:%M")
+        return now.strftime("%m-%d-%y")
 
 
         
@@ -139,15 +140,17 @@ class TaskView:
         
 
         if todo_content:
-            now = self.time_of_creation()
-            if todo_prio == 'Select priority':
-                todo_prio == 'low'
-            todo_service.change_task_priority(self.user.name, todo_content, todo_prio)  
-            todo_service.add_task_to_user(self.user.name,f"{[todo_prio]} {todo_content} {now}")
-            print(todo_prio)
+            
+            todo_object = Task(todo_content, todo_prio)
+            todo_service.add_task_to_user(self.user.name, todo_object)
+           
             self.create_todo_entry.delete(0, constants.END)
             self.assign_todo_list(self.user.name)
-           
+            now = self.time_of_creation()
+
+            
+
+            
 
             success_label = ttk.Label(
                 master=self.frame,
@@ -173,7 +176,7 @@ class TaskView:
 
        
   
-        options = ['low','medium',"high"]
+        options = ['low','medium','high']
         select_priority = "Select priority"
         priority_option = ttk.OptionMenu(
             input_frame,

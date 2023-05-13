@@ -1,6 +1,7 @@
 from repositories.task_repository import TaskDatabase
 from database_connection import get_database_connection
 from repositories.user_repository import UserDatabase
+from entities.tasks import Task
 
 
 
@@ -37,7 +38,7 @@ class TodoService:
         self.task_db = TaskDatabase(get_database_connection())
         self.user_db = UserDatabase(get_database_connection())
         
-    def add_task_to_user(self, user_name: str, task: str):
+    def add_task_to_user(self, user_name: str, todo_object: object):
         """Add a task to a user's task list.
 
         Args:
@@ -47,7 +48,7 @@ class TodoService:
         """
         user = self.user_db.find_by_username(user_name)
         if user:
-            self.task_db.add_task(task, user_name)
+            self.task_db.add_task(todo_object, user_name)
 
     def get_users_tasks(self, user_name: str):
         """
@@ -66,7 +67,7 @@ class TodoService:
         user = self.user_db.find_by_username(user_name)
         if user:
             return self.task_db.get_tasks_of_user(user_name)
-        return None
+        
 
     def get_users_undone_tasks(self, name):
         """Returns a list of undone tasks for the specified user.
@@ -82,7 +83,7 @@ class TodoService:
         user = self.user_db.find_by_username(name)
         if user:
             return self.task_db.get_undone_tasks(name)
-        return None
+        
 
     def get_users_done_tasks(self, name):
         """
@@ -98,7 +99,7 @@ class TodoService:
         user = self.user_db.find_by_username(name)
         if user:
             return self.task_db.get_done_tasks(name)
-        return None
+        
 
     def remove_task_from_user(self, user_name: str, task: str):
         """Removes a task from a user's task list.
@@ -113,8 +114,6 @@ class TodoService:
 
 
     def change_task_priority(self, username: str, task: str, priority: str):
-        if priority not in ('low', 'medium', 'high'):
-            raise ValueError(f"Invalid priority '{priority}'. Allowed values are 'low', 'medium', and 'high'.")
         user = self.user_db.find_by_username(username)
         if user:
             self.task_db.update_users_task_priority(username, task, priority)
@@ -129,8 +128,7 @@ class TodoService:
             username (str): The username of the user.
             task (str): The task to change the status of.
 
-        Returns:
-            None
+        
         """
         user = self.user_db.find_by_username(username)
         if user:
