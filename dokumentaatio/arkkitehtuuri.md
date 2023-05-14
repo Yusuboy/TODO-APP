@@ -34,10 +34,17 @@ User-luokka sisältää käyttäjän nimen ja salasanan. Jokaisella tehtäväll�
       }
       
 ```
+***
+## **Tiedon pysyväistallennus**
 
+Koodin pakkausrakenteissa sisällä sijaitsevat repositories, nimittäin TaskDatabase ja UserDatabase luokat, vastaavat datan tallentamisesta  Nämä luokat toteuttavat Repository-suunnittelumallia. Luokat toimivat suurinpiirtein samalla logiikalla. 
+UserDatabase-luokka ja  TaskDatabase-luokka käyttää SQLite-tietokantaa käyttäjien tai tehtävien tietojen tallentamiseen. Luokkien konstruktori ottaa tietokantayhteyden parametrina ja tallentaa sen instance-muuttujaan, jota käytetään kaikissa metodeissa tietokantayhteyden säilyttämiseksi. Tiedot tallennetaan SQLite-tietokannan tauluihin users ja Tasks, joka alustetaan initialize_database.py-tiedostossa.
 
+## **Päätoiminnallisuuksia**
+### Kuvataan ohjelman toimintalogiikkaa sekvenssikaavioden avulla
 ****
-## **Sekvenssikaavio**
+### **Kirjautuminen**
+Kun käyttäjä kirjoittaa käyttäjätunnuksen ja salasanan kirjautumisnäkymän syötekenttiin, ja sen jälkeen klikkaa Login-painiketta, siirtyy sovelluksen ohjaus seuraaviin vaiheisiin:
 
 ```mermaid
 sequenceDiagram
@@ -52,4 +59,49 @@ sequenceDiagram
   UserDatabase-->>UserService: user
   UserService-->>ui: user
   ui->ui: display_tasks_view()
+```
+
+Kun käyttäjä painaa Sign in-nappia, ohjelma reagoi tähän, jolloin se kutsuu UserService-luokan signing-metodia ja antaa sille parametreiksi käyttäjätunnuksen ja salasanan. Sovelluslogiikka käyttää UserDatabase-luokkaa apunaan tarkistaakseen, onko käyttäjätunnus olemassa. Jos käyttäjätunnus on olemassa, sovellus tarkistaa salasanan. Jos salasanat täsmäävät, käyttäjä pystyy kirjautumaan sisään. Tämän jälkeen käyttöliittymä vaihtaa näkymän TaskView-näkymään eli päänäkymään, ja tuo onnistuneesti kirjautuneen käyttäjän näkymään käyttäjän tekemättömät tehtävät.
+
+### **Käyttäjän luominen**
+
+```mermaid
+sequenceDiagram
+  actor New User
+  participant UI
+  participant TodoService
+  participant UserRepository
+  participant Yuusuf
+  New User->>UI: click "Register" button
+  UI->>TodoService: create_user("Yuusuf", "123")
+  TodoService->>UserRepository: find_by_username("'Yuusuf'")
+  UserRepository-->>TodoService: None
+  TodoService->>Yuusuf: User("Yuusuf", "123")
+  TodoService->>UserRepository: create_user('Yuusuf', '123')
+  UserRepository-->>TodoService: user
+  TodoService-->>UI: user
+  UI->>UI: display_task_view()
+```
+
+Uuden käyttäjän luonnin aikana kutsutaan metodia 'create_user' sovelluslogiikassa ja välittää sille parametrina uuden käyttäjän tiedot. Sovelluslogiikka käyttää UserDatabase luokkaa tarkistaakseen, onko käyttäjätunnus jo käytössä. Jos käyttäjätunnusta ei ole käytössä, sovelluslogiikka luo uuden User-olion, jonka se völttää UserDatabse-luokan 'create'-metodille. Tämän jälkeen uusi käyttäjä siirtyy TaskView-näkymään, ja luotu käyttäjä kirjataan sisään.
+
+### **Uuden tehtävän lisäämine**
+Uuden todon luominen tapahtuu klikkaamalla "add task"-nappia. Kaikki taskit ovat prioriteetiltaan oletusarvoisesti "low"
+
+```mermaid
+sequenceDiagram
+  actor User 
+  participant UI
+  participant UserService
+  participant UserDatabase
+  User ->>UI: click "Add task"
+  UI->>UserService: add_task_to_user("Yuusuf",Task('vie roskat','low', False))
+  UserService->>UserDatabase: find_by_username("Yuusuf")
+  UserDatabase-->>UserService: user
+  
+  
+  UserService->>TaskDatabase: add_task(Task('vie roskat','low', False), "Yuusuf")
+  TaskDatabase-->>UserService: Task.name
+  UserService-->>UI: Task.name 
+  UI->>UI: assign_todo_list()
 ```

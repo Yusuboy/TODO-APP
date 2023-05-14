@@ -13,7 +13,7 @@ class UserDatabase:
         create_user(user: User): Inserts a new user record into the database.
       
         find_by_username(name: str): Finds a user in the database by their username.
-        delete_everything(): Deletes all user records from the database.
+        
 
     """
     def __init__(self, connection):
