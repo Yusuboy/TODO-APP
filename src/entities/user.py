@@ -7,7 +7,7 @@ class User:
         password (str): The user's password.
 
     Methods:
-        __init__(self, name: str, password: str): 
+        __init__(self, name: str, password: str):
         Initializes a new User instance with the given name and password.
     """
 
@@ -20,6 +20,3 @@ class User:
         """
         self.name = name
         self.password = password
-    
-
-    

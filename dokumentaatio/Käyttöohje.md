@@ -25,9 +25,11 @@ Kirjautuminen onnistuu kirjoittamalla olemassaoleva käyttäjätunnus sekä syö
 # **Uuden käyttäjän luominen**
 Kirjautumisnäkymästä on mahdollista siirtyä rekisteröintinäkymään Nappia "Sign up " painamalla.
 
-Uusi käyttäjä luodaan syöttämällä tiedot syötekenttiin ja painamalla "Register"-painiketta:
+Uusi käyttäjä luodaan syöttämällä tiedot syötekenttiin ja painamalla "Register"-painiketta Huom. käyttäjänimen on oltava uniikki sekä vähintään neljä merkkiä:
 
 ![Kuva](./Kuvat/kira2.png) 
+
+Klikkaamalla Back-nappia päästään takaisin kirjautumis näkymälle.
 
 # **Todojen luominen ja tehdyksi merkkaaminen**
 Kun kirjautuminen onnistuu käyttäjä voi hallinnoida todojaan:

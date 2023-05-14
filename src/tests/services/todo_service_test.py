@@ -8,49 +8,6 @@ class Test_todo_service(unittest.TestCase):
         self.task = TodoService()
         self.person = UserService()
 
-
-    def test_create_user(self):
-        
-        username = "testuser"
-        password = "testpassword"
-        user = self.person.create_user(username, password, signin=True)
-        self.assertEqual(user.name, username)
-        self.assertEqual(user.password, password)
-
-
-        with self.assertRaises(UsernameTakenError):
-            self.person.create_user(username, password, signin=True)
-
-
-        with self.assertRaises(InvalidUsername):
-            self.person.create_user("LOL", 'Salasana', signin=True)
-
-
-    
-    def test_signin(self):
-        username = "testuser3"
-        password = "testpassword3"
-        user = self.person.create_user(username, password, signin=True)
-
-        self.person.signin(username, password)
-        self.assertEqual(self.person.get_current_user().name, user.name)
-        self.assertEqual(self.person.get_current_user().password, user.password)
-        with self.assertRaises(CredentialsBeingIncorrect):
-            self.person.signin(username, "incorrectpassword")
-        
-        with self.assertRaises(CredentialsBeingIncorrect):
-            self.person.signin("incorrectusername", password)
-
-
-    def test_logout(self):
-        username = "testuser4"
-        password = "testpassword4"
-
-        self.person.create_user(username, password, signin=True)
-        self.assertIsNotNone(self.person.get_current_user())
-        self.person.logout()
-        self.assertIsNone(self.person.get_current_user())
-
        
     
     def test_add_task_to_user(self):
@@ -113,7 +70,7 @@ class Test_todo_service(unittest.TestCase):
         self.assertEqual(undone_tasks[0],'task1')
         self.assertIsNone(self.task.get_users_undone_tasks("non_existent_user"))
 
-    # ChatGpt apuna käyttäen
+
     def test_remove_task_from_user(self):
         taskit1 = Task('task1', 'high')
         tasks = self.task.get_users_tasks("Yuusuf")
@@ -153,3 +110,6 @@ class Test_todo_service(unittest.TestCase):
             self.fail("Task not found")
 
         self.assertIsNone(self.task.change_task_priority("SoRandom", "task", 'high'))
+
+
+ 

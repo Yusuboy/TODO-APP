@@ -46,7 +46,7 @@ class TaskDatabase:
 
     def update_users_task_priority(self, name, task, priority):
         cursor = self.connection.cursor()
-        
+
         cursor.execute(
     "UPDATE Tasks SET priority = ? "
     "WHERE user_id = (SELECT id FROM Users WHERE name = ?) AND task = ?",

@@ -1,6 +1,7 @@
 # **Arkkitehtuurikuvaus**
 
 ## **Rakenne**
+***
 Koodin pakkaus rakenne on seuraavanlainen
 
 ![Kuva](./Kuvat/ohte_kaavio.png) 
@@ -18,7 +19,7 @@ Sovelluksemme käyttöliittymä sisältää kolme näkymää: Kirjautumisnäkym�
 
 ## **Sovelluslogiikka**
 
-User-luokka sisältää käyttäjän nimen ja salasanan. Jokaisella tehtävällä on nimi ja tila, joka kertoo onko tehtävä suoritettu vai ei.
+User-luokka sisältää käyttäjän nimen ja salasanan. Jokaisella tehtävällä on nimi, prioriteetti ja tila, joka kertoo onko tehtävä suoritettu vai ei. Jokaisen tehtävän prioriteetti on oletusarvoisesti 'low'
 ```mermaid
  classDiagram
       Task  -->  User
@@ -30,19 +31,31 @@ User-luokka sisältää käyttäjän nimen ja salasanan. Jokaisella tehtäväll�
       }
       class Task{
           name: str
+          priority: str
           completed: bool
       }
       
 ```
+Todopalvelu käyttää TodoRepositoryn ja UserRepositoryn nimisiä luokkia, jotka sijaitsevat tietojen tallennuksesta vastaavassa repositories-pakkauksessa, jotta se voi käsitellä käyttäjien ja tehtävien tietoja.
+
+Ohjelman osien suhdetta kuvaava kaavio:
+![Kuva](./Kuvat/pakettikaavio.png) 
 ***
 ## **Tiedon pysyväistallennus**
 
 Koodin pakkausrakenteissa sisällä sijaitsevat repositories, nimittäin TaskDatabase ja UserDatabase luokat, vastaavat datan tallentamisesta  Nämä luokat toteuttavat Repository-suunnittelumallia. Luokat toimivat suurinpiirtein samalla logiikalla. 
 UserDatabase-luokka ja  TaskDatabase-luokka käyttää SQLite-tietokantaa käyttäjien tai tehtävien tietojen tallentamiseen. Luokkien konstruktori ottaa tietokantayhteyden parametrina ja tallentaa sen instance-muuttujaan, jota käytetään kaikissa metodeissa tietokantayhteyden säilyttämiseksi. Tiedot tallennetaan SQLite-tietokannan tauluihin users ja Tasks, joka alustetaan initialize_database.py-tiedostossa.
 
+Alla olevassa kuvassa esitellään, miltä ohjelmamme käyttämä tietokanta-taulujen rakenne näyttää.
+users taulu:
+![Kuva](./Kuvat/Users_taulu.png)
+tasks taulu:
+![Kuva](./Kuvat/Task_taulu.png)
+****
+
 ## **Päätoiminnallisuuksia**
 ### Kuvataan ohjelman toimintalogiikkaa sekvenssikaavioden avulla
-****
+
 ### **Kirjautuminen**
 Kun käyttäjä kirjoittaa käyttäjätunnuksen ja salasanan kirjautumisnäkymän syötekenttiin, ja sen jälkeen klikkaa Login-painiketta, siirtyy sovelluksen ohjaus seuraaviin vaiheisiin:
 
@@ -92,17 +105,17 @@ Uuden todon luominen tapahtuu klikkaamalla "add task"-nappia. Kaikki taskit ovat
 sequenceDiagram
   actor User 
   participant UI
-  participant UserService
+  participant TodoService
   participant UserDatabase
   User ->>UI: click "Add task"
-  UI->>UserService: add_task_to_user("Yuusuf",Task('vie roskat','low', False))
-  UserService->>UserDatabase: find_by_username("Yuusuf")
-  UserDatabase-->>UserService: user
+  UI->>TodoService: add_task_to_user("Yuusuf",Task('vie roskat','low', False))
+  TodoService->>UserDatabase: find_by_username("Yuusuf")
+  UserDatabase-->>TodoService: user
   
   
-  UserService->>TaskDatabase: add_task(Task('vie roskat','low', False), "Yuusuf")
-  TaskDatabase-->>UserService: Task.name
-  UserService-->>UI: Task.name 
+  TodoService->>TaskDatabase: add_task(Task('vie roskat','low', False), "Yuusuf")
+  TaskDatabase-->>TodoService: Task.name
+  TodoService-->>UI: Task.name 
   UI->>UI: assign_todo_list()
 ```
 Todon luonnin aikana kutsutaan metodia 'add_task_to_user' sovelluslogiikassa ja välittää sille parametrina todo-olio ja käyttäjän nimen. Sovelluslogiikka tallentaa todon TaskDatabase-luokan add_task-metodia käyttäen.Lopuksi käyttöliittymä päivittää näytettävät tehtävät kutsumalla assign_todo_list-metodiaan. 

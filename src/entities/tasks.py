@@ -7,7 +7,7 @@ class Task:
         priority (str): priority of the task.
 
     Methods:
-        __init__(self, name: str, priority: str = 'low' ): Initializes a new Task instance with the given name and sets task priority low by default.
+    __init__(self, name: str, priority: str ): Initializes a new Task instance with the given name and sets.
     """
 
     def __init__(self, name: str, priority: str):
@@ -17,7 +17,7 @@ class Task:
             name (str): The name of the task.
             priority(str): The priority of the task
         """
-        
+
         self.name = name
 
         if priority in ['low', 'medium', 'high']:
@@ -26,9 +26,3 @@ class Task:
             self.priority = 'low'
 
         self.completed = False
-
-
-        
-        
-        
-        
