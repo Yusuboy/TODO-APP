@@ -16,7 +16,8 @@ Testikattavuuden ulkopuolelle jätettiin build.py
 ***
 Sovelluksen järjestelmätestaus on suoritettu manuaalisesti.
 ### **Asennus ja konfigurointi**
-Sovellus on ladattu ja testattu [käyttöohjeessa](./Käyttöohje.md) kuvatulla tavalla sekä macOS- että Linux-käyttöjärjestelmille. Testauksessa on käytetty erilaisia konfiguraatioita, jotka on määritelty .env-tiedostossa.
+
+Sovellus on läpikäynyt onnistuneen lataus- ja testausprosessin macOS- ja Linux-käyttöjärjestelmissä [käyttöohjeessa](./Käyttöohje.md) kuvatulla tavalla. Testaus on toteutettu käyttäen erilaisia konfiguraatioita, jotka on määritelty tarkasti .env-tiedostossa.
 
 ## Sovellukseen jääneet laatuongelmat
-Emme saaneet näkyväksi aikaa, jolloin todo luotiin. Jokaiselle todolla prioriteetti, mutta sitä ei näy meidän käyttöliittymässä.
+Emme saaneet näkyväksi Todo prioriteettia käyttöliittymässä. Jokaiselle todolla prioriteetti ja prioriteetti voidaan valita, jolloin se näkyy tietokannassa, mutta sen näyttäminen käyttöliittymässä ei onnistunut.

@@ -20,7 +20,7 @@ Sovellus alkaa kirjautumis näkymästä:
 
 ![Kuva](./Kuvat/kirjaa.png) 
 
-Kirjautuminen onnistuu kirjoittamalla olemassaoleva käyttäjätunnus sekä syötekenttään ja painamalla "Sign in"-nappia.
+Kirjautuminen onnistuu kirjoittamalla olemassaoleva käyttäjätunnus sekä salasana syötekenttään ja klikkaamalla "Sign in"-nappia.
 
 # **Uuden käyttäjän luominen**
 Kirjautumisnäkymästä on mahdollista siirtyä rekisteröintinäkymään Nappia "Sign up " painamalla.
