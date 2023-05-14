@@ -160,7 +160,7 @@ class TaskView:
         input_frame.columnconfigure(1, weight=0)
         input_frame.columnconfigure(2, weight=0)
 
-        input_label = ttk.Label(master=input_frame, text="New Task:")
+
 
         self.create_todo_entry = ttk.Entry(master=input_frame, font=("TkDefaultFont", 12))
         self.create_todo_entry.grid(row=0, column=0, padx=5, pady=5, sticky=constants.EW)
@@ -195,8 +195,6 @@ class TaskView:
             padding=10,
         )
         create_todo_button.grid(row=0, column=2, padx=5, pady=5, sticky=constants.E)
-
-        input_label.grid(row=0, column=0, padx=5, pady=5, sticky=constants.W)
         ttk.Separator(master=self.frame, orient="horizontal").grid(
             row=2, column=0, columnspan=2, sticky="ew", pady=10
         )
