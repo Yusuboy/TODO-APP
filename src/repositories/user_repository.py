@@ -58,7 +58,7 @@ class UserDatabase:
         cursor = self.connection.cursor()
         cursor.execute("Select * from Users where name = ?", (name,))
         users = cursor.fetchone()
-        
+
         return users
 
 

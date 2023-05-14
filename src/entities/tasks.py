@@ -7,7 +7,8 @@ class Task:
         priority (str): priority of the task.
 
     Methods:
-    __init__(self, name: str, priority: str ): Initializes a new Task instance with the given name and sets.
+    __init__(self, name: str, priority: str ): 
+        Initializes a new Task instance with the given name and sets.
     """
 
     def __init__(self, name: str, priority: str):

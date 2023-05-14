@@ -10,9 +10,6 @@ class Users_tasklist_view:
         self.tasks = tasks
         self.manage_task_status = manage_task_status
         self.frame = None
-        
-        
-
         self.assign()
 
 
@@ -25,8 +22,9 @@ class Users_tasklist_view:
         self.frame.pack(fill=constants.X)
 
     def assign_task_status(self, task):
+        now2 = self.time_of_creation2()
         item_frame = ttk.Frame(master=self.frame)
-        update_label = ttk.Label(master=item_frame, text=task)
+        update_label = ttk.Label(master=item_frame, text= f'{task} {now2}')
 
         update_task_button = ttk.Button(
             master=item_frame,
@@ -57,6 +55,11 @@ class Users_tasklist_view:
         if self.tasks != None:
             for task in self.tasks:
                 self.assign_task_status(task)
+
+
+    def time_of_creation2(self):
+        now = datetime.datetime.now()
+        return now.strftime("%D-%M")
 
 class TaskView:
     def __init__(self, master, handle_logout):
@@ -89,22 +92,22 @@ class TaskView:
 
     def time_of_creation(self):
         now = datetime.datetime.now()
-        return now.strftime("%m-%d-%y")
+        return now.strftime("%H:%M")
 
 
         
     def assign_todo_list(self, name):
         if self.task_list_view:
             self.task_list_view.dismantle()
-            
         tasks = todo_service.get_users_undone_tasks(name)
+        todo_prio2 =  self.select_var_priority.get()
+        now2 = self.time_of_creation()
 
         self.task_list_view = Users_tasklist_view(
             self.todo_list_frame,
             tasks,
             self.manage_task_status
         )
-
         self.task_list_view.pack()
 
 
@@ -133,7 +136,7 @@ class TaskView:
    
         )
 
-    #  [Low] Go to sleep 5-11-2020
+ 
     def handle_create_todo(self):
         todo_content = self.create_todo_entry.get()
         todo_prio =  self.select_var_priority.get()
@@ -154,7 +157,7 @@ class TaskView:
 
             success_label = ttk.Label(
                 master=self.frame,
-                text="Task created successfully!",
+                text=f"Task created successfully at {now}!",
                 style="Success.TLabel"
             )
             success_label.grid(row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
