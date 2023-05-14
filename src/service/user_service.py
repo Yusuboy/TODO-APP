@@ -15,43 +15,12 @@ class InvalidUsername(Exception):
     pass
 
 class UserService:
-
     """
-    A class representing a todo application (user).
+    A class representing a user service that provides functionality for creating new users.
 
-    Methods:
-    __init__(self):
-        Initializes a new UserService instance.
-
-    create_user(self, username: str, password: str, signin: bool = True):
-        Creates a new user with the given username and password.
-
-    signin(self, username: str, password: str):
-        Signs in the user with the given username and password.
-
-    logout(self) :
-        Logs out the current user.
-
-    get_current_user(self):
-        Gets the current user.
-
-    add_task_to_user(self, user_name: str, task: str):
-        Adds a task to the user's task list.
-
-    get_users_tasks(self, user_name: str):
-        Gets the tasks of the user with the given username.
-
-    get_users_undone_tasks(self, name: str):
-        Gets the undone tasks of the user with the given username.
-
-    get_users_done_tasks(self, name: str):
-        Gets the done tasks of the user with the given username.
-
-    remove_task_from_user(self, user_name: str, task: str):
-        Removes a task from the user's task list.
-
-    change_user_task_status(self, username: str, task: str):
-        Changes the status of a task for the user with the given username.
+    Attributes:
+        user (str): The username of the current user. Defaults to None.
+        user_db (UserDatabase): A UserDatabase instance to handle database operations for users.
     """
     def __init__(self):
         """Initializes a new UserService instance."""
@@ -67,7 +36,7 @@ class UserService:
             signin (bool, optional): Whether to sign in the new user. Defaults to True.
 
         Returns:
-            User: The newly created user.
+            User: The created user.
         
         Raises:
             UsernameTakenError: If the given username already exists.

@@ -8,29 +8,12 @@ from database_connection import get_database_connection
 
 class TodoService:
     """
-    A class representing a todo application (user).
+    A service class that provides methods to manage to-do tasks for users.
     
-    Methods:
-    __init__(self):
-        Initializes a new TodoService instance.
-
-    add_task_to_user(self, user_name: str, task: str):
-        Adds a task to the user's task list.
-
-    get_users_tasks(self, user_name: str):
-        Gets the tasks of the user with the given username.
-
-    get_users_undone_tasks(self, name: str):
-        Gets the undone tasks of the user with the given username.
-
-    get_users_done_tasks(self, name: str):
-        Gets the done tasks of the user with the given username.
-
-    remove_task_from_user(self, user_name: str, task: str):
-        Removes a task from the user's task list.
-
-    change_user_task_status(self, username: str, task: str):
-        Changes the status of a task for the user with the given username.
+    Attributes:
+        user (str): The username of the current user. Defaults to None.
+        task_db (TaskDatabase): A TaskDatabase instance to handle database operations for tasks.
+        user_db (UserDatabase): A UserDatabase instance to handle database operations for users.
     """
     def __init__(self):
         """Initializes a new TodoService instance."""
@@ -39,13 +22,16 @@ class TodoService:
         self.user_db = UserDatabase(get_database_connection())
 
     def add_task_to_user(self, user_name: str, todo_object: object):
-        """Add a task to a user's task list.
+        """Adds a task to a user's list of tasks.
 
         Args:
-        user_name (str): The username of the user whose task list the task will be added to.
-        task (str): The name of the task to be added.
+            user_name (str): The username of the user whose list the task is being added to.
+            todo_object (object): The task being added to the user's list.
 
+        Returns:
+            None
         """
+  
         user = self.user_db.find_by_username(user_name)
         if user:
             self.task_db.add_task(todo_object, user_name)
@@ -78,8 +64,7 @@ class TodoService:
             name (str): The username of the user whose undone tasks are to be returned.
 
         Returns:
-            [List[str]]: 
-                A list of undone tasks for the specified user or None if the user does not exist.
+             A list of undone tasks for the specified user or None if the user does not exist.
 
         """
         user = self.user_db.find_by_username(name)
@@ -97,8 +82,7 @@ class TodoService:
             name (str): The name of the user.
 
         Returns:
-            [List[str]]: 
-                A List of done tasks for the specified user or None if the user does not exist.
+            A List of done tasks for the specified user or None if the user does not exist.
         """
         user = self.user_db.find_by_username(name)
         if user:
@@ -120,6 +104,18 @@ class TodoService:
 
 
     def change_task_priority(self, username: str, task: str, priority: str):
+        """
+        Changes the priority of a task for a given user.
+
+        Args:
+            username (str): The username of the user whose task is being modified.
+            task (str): The name of the task to modify.
+            priority (str): The new priority of the task.
+
+        Returns:
+            User object: The user object corresponding to the modified task, if the user is found.
+            None
+        """
         user = self.user_db.find_by_username(username)
         if user:
             self.task_db.update_users_task_priority(username, task, priority)

@@ -2,7 +2,18 @@ from tkinter import ttk, StringVar, constants
 from service.user_service import UserService, CredentialsBeingIncorrect, UsernameTakenError, user_service
 
 class LoginView:
+
+    """Class representing the login view of the Todo application.
+        """    
+
     def __init__(self, master, manage_login, manage_create_user_view):
+        """Initializes LoginView instance.
+
+        Args:
+            master (tkinter.Tk): The root window of the application.
+            manage_login (function): Function to call when login is successful.
+            manage_create_user_view (function): Function to call when create user view is requested.
+        """
         self.master = master
         self.manage_login = manage_login
         self.manage_create_user_view = manage_create_user_view
@@ -16,13 +27,17 @@ class LoginView:
 
 
     def pack(self):
+        """Packs the login view frame."""
         self.frame.pack(fill=constants.X)
 
     def dismantle(self):
+        """destroyes login view frame"""
         self.frame.destroy()
 
 
     def login_manager(self):
+        """Calls user_service to check user and initiate login only when successful. 
+        Displays error message if check up fails."""
         username = self.indentification_entry.get()
         password = self.matchword_entry.get()
     
@@ -35,13 +50,20 @@ class LoginView:
 
     
     def show_error(self, message):
+        """Displays error message on the login view.
+
+        Args:
+            message (str): The error message to be shown.
+        """
         self.error_variable.set(message)
         self.error_label.grid()
 
     def hide_error(self):
+        """Hides error message on the login view."""
         self.error_label.grid_remove()
 
     def setup_username_domain(self):
+        """Sets up username domain of the login view."""
         header_label = ttk.Label(
             master=self.frame,
             text="Welcome",
@@ -56,7 +78,7 @@ class LoginView:
 
     
     def setup_password_domain(self):
-
+        """Sets up password domain of the login view."""
         password_label = ttk.Label(master=self.frame, text="Password:", font=("System", 10))
         self.matchword_entry = ttk.Entry(master=self.frame, show="*", style="Custom.TEntry")
         password_label.grid(padx=5, pady=5, sticky=constants.W)
@@ -64,6 +86,7 @@ class LoginView:
 
 
     def assign(self):
+        """ Assigns the necessary widgets and attributes to the view."""
         self.frame = ttk.Frame(master=self.master)
         self.error_variable = StringVar(self.frame)
         self.error_label = ttk.Label(

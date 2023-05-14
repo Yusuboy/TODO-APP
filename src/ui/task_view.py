@@ -5,7 +5,6 @@ from service.task_service import TodoService, todo_service
 import datetime
 class Users_tasklist_view:
     def __init__(self, master, tasks, manage_task_status):
-
         self.master = master
         self.tasks = tasks
         self.manage_task_status = manage_task_status
@@ -15,8 +14,6 @@ class Users_tasklist_view:
 
     def dismantle(self):
         self.frame.destroy()
-
-
 
     def pack(self):
         self.frame.pack(fill=constants.X)
@@ -59,7 +56,7 @@ class Users_tasklist_view:
 
     def time_of_creation2(self):
         now = datetime.datetime.now()
-        return now.strftime("%D-%M")
+        return now.strftime("%m-%d %H:%M")
 
 class TaskView:
     def __init__(self, master, handle_logout):
@@ -100,7 +97,6 @@ class TaskView:
         if self.task_list_view:
             self.task_list_view.dismantle()
         tasks = todo_service.get_users_undone_tasks(name)
-        todo_prio2 =  self.select_var_priority.get()
         now2 = self.time_of_creation()
 
         self.task_list_view = Users_tasklist_view(
@@ -143,18 +139,11 @@ class TaskView:
         
 
         if todo_content:
-            
             todo_object = Task(todo_content, todo_prio)
-            todo_service.add_task_to_user(self.user.name, todo_object)
-           
+            todo_service.add_task_to_user(self.user.name, todo_object)    
             self.create_todo_entry.delete(0, constants.END)
             self.assign_todo_list(self.user.name)
             now = self.time_of_creation()
-
-            
-
-            
-
             success_label = ttk.Label(
                 master=self.frame,
                 text=f"Task created successfully at {now}!",
@@ -162,7 +151,6 @@ class TaskView:
             )
             success_label.grid(row=5, column=0, columnspan=2, padx=5, pady=5, sticky=constants.EW)
             self.frame.after(3000, success_label.destroy)
-
 
 
 
@@ -178,7 +166,7 @@ class TaskView:
         self.create_todo_entry.grid(row=0, column=0, padx=5, pady=5, sticky=constants.EW)
 
        
-  
+
         options = ['low','medium','high']
         select_priority = "Select priority"
         priority_option = ttk.OptionMenu(
@@ -188,7 +176,7 @@ class TaskView:
             *options,
             style = "Custom.TButton"
 
-        
+    
         
         )
         priority_option.grid(

@@ -33,8 +33,13 @@ Klikkaamalla Back-nappia päästään takaisin kirjautumis näkymälle.
 
 # **Todojen luominen ja tehdyksi merkkaaminen**
 Kun kirjautuminen onnistuu käyttäjä voi hallinnoida todojaan:
-![Kuva](./Kuvat/kira3.png) 
 
-Käyttäjä voi merkata olemassaolevia todoa tehdyksi painikkeella "Done" sekä uusien todojen luomisen kirjoittamalla syötekenttään tehtävän todon ja painamalla "Add task"-painiketta.
+![Kuva](./Kuvat/kira4.png) 
+
+Käyttäjä voi luoda uuden todon kirjoittamalla syöttökenttään tehtävän ja painamalla "Add task" nappia. Todo ilmestyy ikkunaan ja koska ei olla valittu prioriteettia, niin todon prioriteetti on low oletuksena.
+
+Todolle voidaan antaa prioriteetti klikkaamalla 'Select priority' nappia, jolloin esiintyy valikko, josta voidaan valita: 'low', 'medium' tai "high". Prioriteetti muuttuu tietokannassa.
+
+Käyttäjä voi merkata olemassaolevia todoa tehdyksi painikkeella "Done", jolloin todo poistuu ikkunasta
 
 Lopuksi Klikkaamalla oikean ylänurkan painiketta "Logout" painamalla käyttäjä kirjautuu ulos sovelluksesta ja palaa aloitus näyttöön eli kirjatumis näyttöön.
