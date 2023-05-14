@@ -33,6 +33,18 @@
 - Voidaan nähdä aika, milloin todo lisättiin
 - Meille tulee ilmoitus, kun uusi todo on lisätty
 - Korjattiin bugeja.
-- Muokattiin service luokkia. jolloin saatiin bugi korjattua
-- Alettiin suunnittelemaan miten voidaan priorisoida taskit
+- Muokattiin service luokkia. jolloin saatiin bugi Korjattua
+- Alettiin suunnittelemaan miten voidaan priorisoida Taskit
 - Seuraavaksi olisi tavoitteena, että voitaisiin prioridoida tehtävät
+
+## Viikko 7
+- Alettiin konstruktoimaa tapaa, jolla voidaan priorisoida todot
+- Lisättiin uusia toimintoja ohjelmaan. lisäsimme napin, jolla voidaan priorisoida todot. Laajennettiin task luokkaa ja Task tietokantaa, jotta Todoilla olisi prioriteetti. 
+- Lisäsimme dropdown menu, jolla voidaan valita, mikä prioriteetti. Onnistuimme saamaan prioriteetin käyttöliitymään näkyväksi, kun lisäämme todon
+- Korjailtiin bugeja.
+- Tehtiin testeille oma tietokanta
+- Korjailtiin lisää bugeja.
+- bugit saatiin korjattua, mutta todon prioriteetti ei enää näy käyttöliittymässä, kun todo lisätään. Tietokannassa näkyy lisätyn todon prioriteetti.
+- Tehtiin lisää testejä
+- Jaettiin TodoService luokka kahteen luokkaan: UserService ja TodoService. 
+- Viimeisteltiin ohjelmaa.
