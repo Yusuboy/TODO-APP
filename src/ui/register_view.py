@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants
-from service.user_service import UserService, CredentialsBeingIncorrect, UsernameTakenError, user_service
+from service.user_service import UserService, CredentialsBeingIncorrect, UsernameTakenError, user_service, InvalidUsername
 
 class RegisterView:
     def __init__(self, master, manage_register, manage_login_view):
@@ -30,13 +30,17 @@ class RegisterView:
         if len(username) == 0 or len(password) == 0:
             self.show_error("Username and password is required")
             return
-    
+
+        
         try:
             user_service.create_user(username, password, signin=True)
             self.manage_register()
 
         except UsernameTakenError:
             self.show_error(f"Username {username} already exists")
+
+        except InvalidUsername:
+            self.show_error("Username must be minimum of 4 characters")
 
     
     def show_error(self, message):

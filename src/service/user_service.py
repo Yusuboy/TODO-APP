@@ -10,6 +10,10 @@ class CredentialsBeingIncorrect(Exception):
 class UsernameTakenError(Exception):
     pass
 
+
+class InvalidUsername(Exception):
+    pass
+
 class UserService:
 
     """
@@ -70,6 +74,10 @@ class UserService:
         """
         if self.user_db.find_by_username(username):
             raise UsernameTakenError(f"Username {username} already exists")
+
+        if len(username) < 4:
+            raise InvalidUsername("Username must be minimum of 4 characters")
+
         user = User(username, password)
         self.user_db.create_user(user)
         if signin:
