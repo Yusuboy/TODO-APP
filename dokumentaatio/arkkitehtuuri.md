@@ -58,7 +58,7 @@ sequenceDiagram
   UserService->>UserDatabase: find_by_username("Yuusuf")
   UserDatabase-->>UserService: user
   UserService-->>ui: user
-  ui->ui: display_tasks_view()
+  ui->>ui: display_tasks_view()
 ```
 
 Kun käyttäjä painaa Sign in-nappia, ohjelma reagoi tähän, jolloin se kutsuu UserService-luokan signing-metodia ja antaa sille parametreiksi käyttäjätunnuksen ja salasanan. Sovelluslogiikka käyttää UserDatabase-luokkaa apunaan tarkistaakseen, onko käyttäjätunnus olemassa. Jos käyttäjätunnus on olemassa, sovellus tarkistaa salasanan. Jos salasanat täsmäävät, käyttäjä pystyy kirjautumaan sisään. Tämän jälkeen käyttöliittymä vaihtaa näkymän TaskView-näkymään eli päänäkymään, ja tuo onnistuneesti kirjautuneen käyttäjän näkymään käyttäjän tekemättömät tehtävät.
@@ -69,17 +69,17 @@ Kun käyttäjä painaa Sign in-nappia, ohjelma reagoi tähän, jolloin se kutsuu
 sequenceDiagram
   actor New User
   participant UI
-  participant TodoService
-  participant UserRepository
+  participant UserService
+  participant UserDatabase
   participant Yuusuf
   New User->>UI: click "Register" button
-  UI->>TodoService: create_user("Yuusuf", "123")
-  TodoService->>UserRepository: find_by_username("'Yuusuf'")
-  UserRepository-->>TodoService: None
-  TodoService->>Yuusuf: User("Yuusuf", "123")
-  TodoService->>UserRepository: create_user('Yuusuf', '123')
-  UserRepository-->>TodoService: user
-  TodoService-->>UI: user
+  UI->>UserService: create_user("Yuusuf", "123")
+  UserService->>UserDatabase: find_by_username("'Yuusuf'")
+  UserDatabase-->>UserService: None
+  UserService->>Yuusuf: User("Yuusuf", "123")
+  UserService->>UserDatabase: create_user('Yuusuf', '123')
+  UserDatabase-->>UserService: user
+  UserService-->>UI: user
   UI->>UI: display_task_view()
 ```
 
@@ -105,3 +105,4 @@ sequenceDiagram
   UserService-->>UI: Task.name 
   UI->>UI: assign_todo_list()
 ```
+Todon luonnin aikana kutsutaan metodia 'add_task_to_user' sovelluslogiikassa ja välittää sille parametrina todo-olio ja käyttäjän nimen. Sovelluslogiikka tallentaa todon TaskDatabase-luokan add_task-metodia käyttäen.Lopuksi käyttöliittymä päivittää näytettävät tehtävät kutsumalla assign_todo_list-metodiaan. 
