@@ -5,6 +5,7 @@ Ohjelman toimivuutta on varmistettu sekä automatisoiduilla yksikkö- ja integra
 ***
 ### **Sovelluslogiikka**
 Sovelluslogiikasta vastaa TodoService-luokka sekä UserService-luokat. Test_todo_service-testiluokka varmistaa TodoService-luokan toimivuuden tarkistamalla sovelluslogiikan oikeellisuuden. Test_user_service-testiluokka taas varmistaa UserServicen-luokan toimivuuden. Integraatiotesti tasolla Test_todo_service-testiluokka sekä Test_user_service-testiluokka varmistavat myös repositorien luokkien, UserDatabase ja TaskDatabase toimivuutta.
+UserDatabase-luokan toiminnallisuutta testataan lisäksi myös Test_UserDatabase-testiluokan avulla.
 
 ### **Testauskattavuus**
 Ottamatta huomioon ui luokkia, sovelluksen testauksen haarautumakattavuus on 99%

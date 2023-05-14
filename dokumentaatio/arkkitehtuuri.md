@@ -2,14 +2,19 @@
 
 ## **Rakenne**
 ***
-Koodin pakkaus rakenne on seuraavanlainen
+Koodin pakkaus rakenne on seuraavanlainen:
 
-![Kuva](./Kuvat/ohte_kaavio.png) 
+![Kuva](./Kuvat/ohtekaavio2.png) 
 
 ui sisältää tietoa käyttöliittymästä, services sisältää  tietoa sovelluslogiikasta ja repositories vastaa pysyvätallennuksesta. Pakkaus entities sisältää luokat user, tasks, tasklist jotka kuvastavat tietokohteita, jota sovelluskäyttää.
 ****
 ## **Käyttöliittymä**
-Sovelluksemme käyttöliittymä sisältää kolme näkymää: Kirjautumisnäkymä, rekisteröitymisnäkymä ja tehtävälistalista näkymä. Jokainen näistä näkymistä ollaan toteutettu omissa luokissa. Näkymistä vastaa UI luokka. Käyttöliittymä kutsuu ainoastaan TaskService-luokan  sekä UserService-luokan metodeja.
+Sovelluksemme käyttöliittymä sisältää kolme näkymää: 
+- Kirjautumisnäkymä, 
+- rekisteröitymisnäkymä
+- tehtävälistalista näkymä. 
+
+Jokainen näistä näkymistä ollaan toteutettu omissa luokissa. Näkymistä vastaa UI luokka. Käyttöliittymä kutsuu ainoastaan TaskService-luokan  sekä UserService-luokan metodeja.
 
 
 
@@ -22,7 +27,7 @@ Sovelluksemme käyttöliittymä sisältää kolme näkymää: Kirjautumisnäkym�
 User-luokka sisältää käyttäjän nimen ja salasanan. Jokaisella tehtävällä on nimi, prioriteetti ja tila, joka kertoo onko tehtävä suoritettu vai ei. Jokaisen tehtävän prioriteetti on oletusarvoisesti 'low'
 ```mermaid
  classDiagram
-      Task  -->  User
+      User  --  Task
       
       
       class User{
@@ -39,6 +44,7 @@ User-luokka sisältää käyttäjän nimen ja salasanan. Jokaisella tehtäväll�
 Todopalvelu käyttää TodoRepositoryn ja UserRepositoryn nimisiä luokkia, jotka sijaitsevat tietojen tallennuksesta vastaavassa repositories-pakkauksessa, jotta se voi käsitellä käyttäjien ja tehtävien tietoja.
 
 Ohjelman osien suhdetta kuvaava kaavio:
+
 ![Kuva](./Kuvat/pakettikaavio.png) 
 ***
 ## **Tiedon pysyväistallennus**
@@ -47,9 +53,9 @@ Koodin pakkausrakenteissa sisällä sijaitsevat repositories, nimittäin TaskDat
 UserDatabase-luokka ja  TaskDatabase-luokka käyttää SQLite-tietokantaa käyttäjien tai tehtävien tietojen tallentamiseen. Luokkien konstruktori ottaa tietokantayhteyden parametrina ja tallentaa sen instance-muuttujaan, jota käytetään kaikissa metodeissa tietokantayhteyden säilyttämiseksi. Tiedot tallennetaan SQLite-tietokannan tauluihin users ja Tasks, joka alustetaan initialize_database.py-tiedostossa.
 
 Alla olevassa kuvassa esitellään, miltä ohjelmamme käyttämä tietokanta-taulujen rakenne näyttää.
-users taulu:
+
 ![Kuva](./Kuvat/Users_taulu.png)
-tasks taulu:
+
 ![Kuva](./Kuvat/Task_taulu.png)
 ****
 
