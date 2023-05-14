@@ -1,5 +1,5 @@
 import unittest
-from service.user_service import UserService, UsernameTakenError, CredentialsBeingIncorrect
+from service.user_service import UserService, UsernameTakenError, CredentialsBeingIncorrect, InvalidUsername
 from service.task_service import TodoService, todo_service
 from entities.tasks import Task
 
@@ -21,6 +21,36 @@ class Test_todo_service(unittest.TestCase):
         with self.assertRaises(UsernameTakenError):
             self.person.create_user(username, password, signin=True)
 
+
+        with self.assertRaises(InvalidUsername):
+            self.person.create_user("LOL", 'Salasana', signin=True)
+
+
+    
+    def test_signin(self):
+        username = "testuser3"
+        password = "testpassword3"
+        user = self.person.create_user(username, password, signin=True)
+
+        self.person.signin(username, password)
+        self.assertEqual(self.person.get_current_user().name, user.name)
+        self.assertEqual(self.person.get_current_user().password, user.password)
+        with self.assertRaises(CredentialsBeingIncorrect):
+            self.person.signin(username, "incorrectpassword")
+        
+        with self.assertRaises(CredentialsBeingIncorrect):
+            self.person.signin("incorrectusername", password)
+
+
+    def test_logout(self):
+        username = "testuser4"
+        password = "testpassword4"
+
+        self.person.create_user(username, password, signin=True)
+        self.assertIsNotNone(self.person.get_current_user())
+        self.person.logout()
+        self.assertIsNone(self.person.get_current_user())
+
        
     
     def test_add_task_to_user(self):
@@ -35,8 +65,6 @@ class Test_todo_service(unittest.TestCase):
         count2 = len(Tasks2)
         self.assertNotEqual(count1, count2)
         self.assertIsNone(self.task.add_task_to_user("Pekka2", taskit2))
-
-      
 
     
     def test_get_users_tasks(self):
@@ -70,6 +98,7 @@ class Test_todo_service(unittest.TestCase):
         done_tasks = self.task.get_users_done_tasks("john_doe")
 
         self.assertEqual(len(done_tasks), 1)
+        self.assertIsNone(self.task.get_users_done_tasks("non_existent_user"))
        
 
 
@@ -82,6 +111,7 @@ class Test_todo_service(unittest.TestCase):
         undone_tasks = self.task.get_users_undone_tasks("Yuusuf")
         self.assertEqual(len(undone_tasks), 1)
         self.assertEqual(undone_tasks[0],'task1')
+        self.assertIsNone(self.task.get_users_undone_tasks("non_existent_user"))
 
     # ChatGpt apuna käyttäen
     def test_remove_task_from_user(self):
@@ -91,9 +121,8 @@ class Test_todo_service(unittest.TestCase):
         self.task.add_task_to_user('Yuusuf', taskit1)
         self.task.remove_task_from_user('Yuusuf', "task1")
         self.assertEqual(count, 1)
+        self.assertIsNone(self.task.remove_task_from_user("RandomName", "Random"))
 
-
-       
 
     # ChatGpt apuna käyttäen
     
@@ -107,6 +136,7 @@ class Test_todo_service(unittest.TestCase):
         self.task.change_user_task_status('Jaja', "task2")
         tasks2 = self.task.get_users_done_tasks('Jaja')
         self.assertEqual(len(tasks), 1)
+        self.assertIsNone(self.task.change_user_task_status("RandomName", "Random"))
             
     def test_change_task_priority(self):
         taskit2 = Task('task2', 'high')
@@ -121,3 +151,5 @@ class Test_todo_service(unittest.TestCase):
                 break
         else:
             self.fail("Task not found")
+
+        self.assertIsNone(self.task.change_task_priority("SoRandom", "task", 'high'))
