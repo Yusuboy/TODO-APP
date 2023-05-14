@@ -1,6 +1,6 @@
 
 # TODO-APP
-- Todo-appi on sovellus, joka auttaa käyttäjää pitämään yllä tehtävälistaa ja organisoimaan päivittäisiä tehtäviään. Joitakin esimerkkejä siitä, mitä todo-apilla voidaan tehdä, ovat: Luoda tehtävälista: Todo-apilla voit luoda luettelon tehtävistä, jotka sinun täytyy suorittaa. Merkitä tehtävä suoritetuksi: Kun olet suortittanut tehtävän niin voit merkitä  sen suoritetuksi
+Todo-appi on älykäs sovellus, jonka avulla käyttäjä voit hallita tehtävälistojaan ja tarkastella päivittäisiä tehtäviään helposti ja vaivattomasti. Sovellus tarjoaa monipuolisia toimintoja, kuten tehtävälistojen luonti ja merkintä tehtävien suorittamisesta sekä priorisoinnin. Todo-apilla voit luoda selkeitä listoja tehtävistäsi, jolloin sinun on helppo pitää yllä tärkeitä asioitasi. Kun olet suorittanut tehtävän, voit merkitä sen kätevästi suoritetuksi Todo-appin avulla.
 
 ***
 ## **Dokumentaatio**
