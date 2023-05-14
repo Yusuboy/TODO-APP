@@ -4,11 +4,13 @@
 
 ***
 ## **Dokumentaatio**
-- [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
-- [Changelog](dokumentaatio/changelog.md)
 - [Vaatimuusmaaritttely](dokumentaatio/vaatimusmaarittely.md)
-- [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
 - [Käyttöohje](dokumentaatio/Käyttöohje.md)
+- [Changelog](dokumentaatio/changelog.md)
+- [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+- [Arkkitehtuurikuvaus](dokumentaatio/arkkitehtuuri.md)
+- [Testausdokumentti](dokumentaatio/Testausdokumentti.md)
+
 ****
 ## **[Release 1](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko5)**
 ## **[Release2](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko6)**
