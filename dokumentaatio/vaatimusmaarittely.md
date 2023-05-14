@@ -1,7 +1,7 @@
 # Vaatimuusmääritttely
 
 ## Käyttötarkoitus
-- Ohjelmalla voidaan pitää listaa tekemättömistä tehtävistä, _todoista_. Sovelluksessa on mahdollista rekisteröityä, jolloin pääsee käsiksi todo-listaan.
+- Sovelluksen tarkoituksena on tarjota työkalu yksilöille heidän tehtäviensä/tavoitteidensa hallintaan. Ohjelmalla voidaan luoda tehtäviä ja pitää listaa tekemättömistä tehtävistä, _todoista_. Sovelluksessa on mahdollista rekisteröityä, jolloin pääsee käsiksi todo-listaan.
 
 ## Sovelluken tarjoama toiminnallisuus
 ### Ennen rekiseröitymistä
