@@ -14,6 +14,7 @@ Todo-appi on älykäs sovellus, jonka avulla käyttäjä voit hallita tehtäväl
 ****
 ## **[Release 1](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko5)**
 ## **[Release2](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko6)**
+## **[Loppupalautus](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Loppupalautus)**
 ****
 
 ## **Asennus**
