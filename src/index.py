@@ -1,14 +1,14 @@
 from tkinter import Tk
 from ui.ui import UI
 
-"""
-    Entry point for the Todo-APP program.
 
-    Creates a Tkinter window, sets its title to "Todo-APP", creates a UI object, initializes it, and starts the Tkinter
-    mainloop to run the UI.
-
-"""
 def main():
+    """
+    This is the entry point for the Todo-APP program. 
+    It creates a Tkinter window titled "Todo-APP", 
+    initializes and runs a UI object using the Tkinter mainloop.
+
+    """
     window = Tk()
     window.title("Todo-APP")
 

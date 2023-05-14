@@ -31,7 +31,7 @@ class TodoService:
         Returns:
             None
         """
-  
+
         user = self.user_db.find_by_username(user_name)
         if user:
             self.task_db.add_task(todo_object, user_name)
