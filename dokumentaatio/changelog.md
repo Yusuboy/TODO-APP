@@ -46,5 +46,6 @@
 - Korjailtiin lisää bugeja.
 - bugit saatiin korjattua, mutta todon prioriteetti ei enää näy käyttöliittymässä, kun todo lisätään. Tietokannassa näkyy lisätyn todon prioriteetti.
 - Tehtiin lisää testejä
-- Jaettiin TodoService luokka kahteen luokkaan: UserService ja TodoService. 
+- Jaettiin TodoService luokka kahteen luokkaan: UserService ja TodoService.
+- Tehtiin luokille docstring  
 - Viimeisteltiin ohjelmaa.
