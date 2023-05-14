@@ -1,5 +1,10 @@
 # **Käyttöohje**
+**Ensin siirry virtuaaliympäristöön komennolla:**
+```bash
+poetry shell
+```
 ## **Ohjelman käynnistäminen**
+
  **1. Aluksi asenna riippuvuudet komennolla:**
 ```bash
 poetry install

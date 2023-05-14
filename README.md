@@ -15,7 +15,13 @@ Todo-appi on älykäs sovellus, jonka avulla käyttäjä voit hallita tehtäväl
 ## **[Release 1](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko5)**
 ## **[Release2](https://github.com/Yusuboy/ot-harjoitustyo/releases/tag/Viikko6)**
 ****
+
 ## **Asennus**
+**0. Ennen asennusta siirry virtuaaliympäristöön komennolla:**
+```bash
+poetry shell
+```
+
  **1. Asenna riippuvuudet komennolla:**
 ```bash
 poetry install
