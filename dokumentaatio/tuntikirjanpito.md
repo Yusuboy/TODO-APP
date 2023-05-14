@@ -23,6 +23,6 @@
 | 10.5   | 2     | Tietokanta debuggausta
 | 11.5   | 2     | Tietokanta debuggausta
 | 12.5   | 2     | tehtiin lisää docsting dokumentaatiota
-| 12.5   | 2     | viimeisteltiin ohjelmaa
+| 13.5   | 2     | viimeisteltiin ohjelmaa
 | 14.5   | 2     | debuggausta. lisää dockstring dokumentaaiota ja tehtiin kaavioita ja testidokumentti.
 | yht   | 78   |  
